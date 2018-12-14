@@ -1,0 +1,53 @@
+{
+  "name": "great-reads",
+  "jest": {
+    "roots": [
+      "app/javascript"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>app/javascript/tests/.setup",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ],
+    "automock": false
+  },
+  "scripts": {
+    "start": "./bin/webpack-dev-server",
+    "test": "NODE_PATH='./node_modules:../app/javascript' jest --coverage",
+    "coverage": "./node_modules/.bin/codecov",
+    "lint": "./node_modules/.bin/eslint app/javascript"
+  },
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "codecov": "^3.1.0",
+    "jest-fetch-mock": "^1.6.6",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
+    "redux-mock-store": "^1.5.3",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.6.0",
+    "jest-enzyme": "^6.1.2",
+    "regenerator-runtime": "^0.12.1",
+    "webpack-dev-server": "2.11.2"
+  }
+}

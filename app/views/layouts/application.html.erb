@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Great reads</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'main' %>
+  </head>
+
+  <body>
+    <div id='entry-point'></div>
+    <%= yield %>
+  </body>
+</html>
