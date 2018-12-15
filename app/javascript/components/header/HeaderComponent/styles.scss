@@ -1,0 +1,46 @@
+.header {
+  background-color: #ead6f0;
+  box-shadow: 5px 5px 4px #888888;
+  display: flex;
+  flex-direction: row;
+  height: 2.5rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-size: 20px;
+
+  &--logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  &--nav-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ba79ce;
+      color: #fcfbf7;
+    }
+  }
+
+  &--with-dropdown {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &--drop-down-triangle{
+    font-size: 10px;
+    align-self: flex-end;
+    margin-left: 3px;
+    margin-bottom: 3px;
+  }
+}
