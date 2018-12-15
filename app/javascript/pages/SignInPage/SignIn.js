@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
-import SignInForm from '../../forms/SignInForm';
+import SignInForm from "../../forms/SignInForm";
 
 export default ({
   history,

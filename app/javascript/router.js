@@ -1,10 +1,10 @@
-import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
 
-import App from './components/AppComponent';
-import Layout from './components/layout/LayoutComponent';
+import App from "./components/app";
+import Layout from "./components/layout";
 
-import routes from './routes';
+import routes from "./routes";
 
 export default () => (
   <BrowserRouter>

@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 
-import user from './userReducer';
+import header from "./headerReducer";
+import user from "./userReducer";
 
 export default combineReducers({
-  user,
+  header,
   form: formReducer,
+  user,
 });
