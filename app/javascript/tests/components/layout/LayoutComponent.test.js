@@ -1,7 +1,7 @@
 import React from 'react';
 import testHelpers from '../../helpers';
 import Layout from '../../../components/layout/LayoutComponent';
-import Header from '../../../components/layout/HeaderComponent';
+import Header from '../../../components/header/HeaderComponent';
 import Footer from '../../../components/layout/FooterComponent';
 
 describe('Layout', () => {
