@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import routeConfig from "./routeConfig/routeConfig";
+import routeConfig from "./routeConfig";
 
 export default routeConfig.map(({
   component,

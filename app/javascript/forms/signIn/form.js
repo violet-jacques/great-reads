@@ -1,7 +1,7 @@
 import React from "react";
 import { Field } from "redux-form";
 
-export default ({ handleSubmit }) => (
+export default ({ children, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <div>
       <label htmlFor="email">Email</label>
@@ -11,6 +11,7 @@ export default ({ handleSubmit }) => (
       <label htmlFor="password">Password</label>
       <Field name="password" component="input" type="password" />
     </div>
+    {children}
     <button type="submit">Submit</button>
   </form>
 );
