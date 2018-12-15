@@ -1,4 +1,4 @@
-import userReducer from "../../reducers/userReducer";
+import userReducer from "../../reducers/user";
 
 describe("userReducer", () => {
   describe("initialState", () => {

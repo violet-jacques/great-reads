@@ -1,5 +1,5 @@
-import signInRouteConfig from "../../../routes/routeConfig/signInRouteConfig";
-import SignIn from "../../../pages/SignInPage";
+import signInRouteConfig from "../../../routes/routeConfig/signIn";
+import SignIn from "../../../pages/signIn";
 
 describe("signIn path route config", () => {
   it("routes to the SignIn component", () => {
