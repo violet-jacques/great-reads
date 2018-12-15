@@ -12,14 +12,11 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
         password_confirmation: 'password',
       )
     end
+    let(:sign_in!) { sign_in_action(email: email, password: password) }
 
     context "with valid params" do
       it "signs the user in" do
-        visit('/')
-        click_link('Account')
-        fill_in('email', :with => email)
-        fill_in('password', :with => password)
-        click_button("Submit")
+        sign_in!
 
         expect(page).to have_current_path('/')
       end
@@ -30,11 +27,8 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
         let(:email) { "wrong@example.com" }
 
         it "displays invalid email error message" do
-          visit('/sign-in')
-          fill_in('email', :with => email)
-          fill_in('password', :with => password)
+          sign_in!
 
-          click_button("Submit")
 
           expect(page).to have_content("Email not found")
         end
@@ -44,15 +38,19 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
         let(:password) { "wrongpassword" }
 
         it "displays invalid password error message" do
-          visit('/sign-in')
-          fill_in('email', :with => email)
-          fill_in('password', :with => password)
-
-          click_button("Submit")
+          sign_in!
 
           expect(page).to have_content("Password invalid")
         end
       end
     end
+  end
+
+  def sign_in_action(email:, password:)
+    visit('/')
+    click_link('Account')
+    fill_in('email', :with => email)
+    fill_in('password', :with => password)
+    click_button("Submit")
   end
 end

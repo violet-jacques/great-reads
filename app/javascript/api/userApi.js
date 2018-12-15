@@ -1,26 +1,23 @@
+const request = (form, path) => {
+  return (
+    global.fetch(
+      `/users/${path}`,
+      {
+        method: "post",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ user: form }),
+      },
+    ).then(response => response.json())
+  );
+};
+
 export default {
   signIn: form => (
-    global.fetch(
-      "/users/sign_in",
-      {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ user: form }),
-      },
-    ).then(response => response.json())
+    request(form, "sign_in")
   ),
   signUp: form => (
-    global.fetch(
-      "/users/sign_up",
-      {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ user: form }),
-      },
-    ).then(response => response.json())
+    request(form, "sign_up")
   ),
 };
