@@ -1,4 +1,4 @@
-import mapStateToProps from "../../../pages/SignUpPage/mapStateToProps";
+import mapStateToProps from "../../../pages/signUp/mapStateToProps";
 
 describe("mapStateToProps", () => {
   const state = {

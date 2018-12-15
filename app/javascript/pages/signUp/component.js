@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import SignUpForm from "../../forms/SignUpForm";
+import SignUpForm from "../../forms/signUp";
 
 export default ({
   history,

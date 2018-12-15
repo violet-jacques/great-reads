@@ -1,7 +1,7 @@
 import React from "react";
-import testHelpers from "../helpers";
-import SignUp from "../../pages/SignUpPage";
-import SignUpForm from "../../forms/SignUpForm";
+import testHelpers from "../../helpers";
+import SignUp from "../../../pages/signUp";
+import SignUpForm from "../../../forms/signUp";
 
 describe("SignUp", () => {
   let wrapper;

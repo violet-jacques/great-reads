@@ -1,7 +1,7 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import mapDispatchToProps from "../../../pages/SignUpPage/mapDispatchToProps";
+import mapDispatchToProps from "../../../pages/signUp/mapDispatchToProps";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
