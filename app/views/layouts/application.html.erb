@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <div id='entry-point'></div>
+    <div id='entry-point' data-id="<%= current_user&.id %>"></div>
     <%= yield %>
   </body>
 </html>

@@ -1,6 +1,6 @@
-import homeRouteConfig from './homeRouteConfig';
-import signInRouteConfig from './signInRouteConfig';
-import signUpRouteConfig from './signUpRouteConfig';
+import homeRouteConfig from "./homeRouteConfig";
+import signInRouteConfig from "./signInRouteConfig";
+import signUpRouteConfig from "./signUpRouteConfig";
 
 export default [
   homeRouteConfig,

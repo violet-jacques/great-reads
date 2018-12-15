@@ -1,7 +1,7 @@
-import SignUpPage from '../../pages/SignUpPage';
+import SignUpPage from "../../pages/SignUpPage";
 
 export default {
-  path: '/sign-up',
+  path: "/sign-up",
   exact: false,
   component: SignUpPage,
 };

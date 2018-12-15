@@ -26,15 +26,44 @@
     padding-right: 5px;
     cursor: pointer;
 
+    &-active {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+      cursor: pointer;
+      background-color: #ba79ce;
+      color: #fcfbf7;
+    }
+
     &:hover {
       background-color: #ba79ce;
       color: #fcfbf7;
     }
   }
 
+  &--dropdown-title {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+  }
+
+  &--dropdown {
+    position: absolute;
+    margin-top: 1.9rem;
+    z-index: 1;
+    background-color: #ba79ce;
+    color: #fcfbf7;
+    box-shadow: 5px 5px 4px #888888;
+    margin-left: -.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   &--with-dropdown {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
 
   &--drop-down-triangle{
