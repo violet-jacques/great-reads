@@ -13,5 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
       <Router />
     </Provider>,
     document.getElementById(ENTRY_POINT)
-  )
+  );
 });
