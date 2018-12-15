@@ -1,6 +1,6 @@
 import React from "react";
 import testHelpers from "../helpers";
-import Home from "../../pages/HomePage";
+import Home from "../../pages/home";
 
 describe("Home", () => {
   let wrapper;

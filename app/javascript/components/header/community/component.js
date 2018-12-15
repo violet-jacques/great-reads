@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 
 export default ({
