@@ -1,6 +1,6 @@
-import userApi from '../../api/userApi';
-import genericAction from '../genericAction';
-import { LOGIN_SUCCESS, LOGIN_FAILURE } from '../../actionTypes';
+import userApi from "../../api/userApi";
+import genericAction from "../genericAction";
+import { LOGIN_SUCCESS, LOGIN_FAILURE } from "../../actionTypes";
 
 const handleSuccessSignIn = (dispatch, history, user) => {
   dispatch(
