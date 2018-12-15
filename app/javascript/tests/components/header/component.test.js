@@ -29,15 +29,10 @@ describe("Header", () => {
 
   describe("activeNavItem", () => {
     const newState = {
-      user: {
-        isLoggedIn: true,
-      },
+      ...state,
       header: {
-        activeNavItem: "home",
-        dropdowns: {
-          browse: false,
-          community: false,
-        }
+        ...state.header,
+        activeNavItem: "home"
       }
     };
     beforeEach(() => {
@@ -51,37 +46,19 @@ describe("Header", () => {
 
   describe("dropdown", () => {
     describe("when all dropdowns are false", () => {
-      const newState = {
-        user: {
-          isLoggedIn: true,
-        },
-        header: {
-          activeNavItem: "",
-          dropdowns: {
-            browse: false,
-            community: false,
-          }
-        }
-      };
-      beforeEach(() => {
-        wrapper = testHelpers.mountWithRouter(<Header />, newState);
-      });
-
       it("doesnt render any dropdowns", () => {
         expect(wrapper.find(".header--dropdown").exists()).toEqual(false);
       });
     });
 
-    describe("when a dropdowns is true", () => {
+    describe("when a dropdown is true", () => {
       const newState = {
-        user: {
-          isLoggedIn: true,
-        },
+        ...state,
         header: {
-          activeNavItem: "",
+          ...state.header,
           dropdowns: {
+            ...state.header.dropdowns,
             browse: true,
-            community: false,
           }
         }
       };
@@ -98,16 +75,10 @@ describe("Header", () => {
   describe("account link", () => {
     describe("when the user is logged in", () => {
       const newState = {
+        ...state,
         user: {
           isLoggedIn: true,
         },
-        header: {
-          activeNavItem: "",
-          dropdowns: {
-            browse: false,
-            community: false,
-          }
-        }
       };
 
       beforeEach(() => {
@@ -120,23 +91,6 @@ describe("Header", () => {
     });
 
     describe("when the user is not logged in", () => {
-      const newState = {
-        user: {
-          isLoggedIn: false,
-        },
-        header: {
-          activeNavItem: "",
-          dropdowns: {
-            browse: false,
-            community: false,
-          }
-        }
-      };
-
-      beforeEach(() => {
-        wrapper = testHelpers.mountWithRouter(<Header />, newState);
-      });
-
       it("renders a link to the sign-in page", () => {
         expect(wrapper.find(Link).last().props().to).toEqual("/sign-in");
       });

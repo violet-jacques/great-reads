@@ -20,13 +20,14 @@ RSpec.describe 'SessionsController', :type => :request do
         password_confirmation: 'password',
       )
     end
+    let(:post!) { post '/users/sign_in', :params => params }
 
     context 'invalid params' do
       context 'invalid email' do
         let(:email) { 'wrong@example.com' }
 
         it 'returns an email error json response' do
-          post '/users/sign_in', :params => params
+          post!
           response = JSON.parse(body)
 
           expect(response).to eq('error' => 'Email not found')
@@ -37,7 +38,7 @@ RSpec.describe 'SessionsController', :type => :request do
         let(:password) { 'wrongpassword' }
 
         it 'returns a password error json response' do
-          post '/users/sign_in', :params => params
+          post!
           response = JSON.parse(body)
 
           expect(response).to eq('error' => 'Password invalid')
@@ -47,7 +48,7 @@ RSpec.describe 'SessionsController', :type => :request do
 
     context 'valid params' do
       it 'returns the user as a json response' do
-        post '/users/sign_in', :params => params
+        post!
         response = JSON.parse(body)
 
         expect(response).to eq(

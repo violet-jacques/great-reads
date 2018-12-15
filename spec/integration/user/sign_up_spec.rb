@@ -5,18 +5,19 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
     let(:email) { 'test@example.com' }
     let(:password) { 'password' }
     let(:password_confirmation) { password }
+    let(:sign_up!) do
+      submit_action(
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation,
+      )
+    end
 
     context "email alread in use" do
       let!(:user) { create(:user, email: email) }
 
       it "displays email error message" do
-        visit('/')
-        click_link('Account')
-        click_link('Register for one!')
-        fill_in('email', :with => email)
-        fill_in('password', :with => password)
-        fill_in('password_confirmation', :with => password_confirmation)
-        click_button("Submit")
+        sign_up!
 
         expect(page).to have_current_path('/sign-up')
         expect(page).to have_content('Email already in use')
@@ -27,13 +28,7 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
       let(:password_confirmation) { 'wrong_password' }
 
       it "displays email error message" do
-        visit('/')
-        click_link('Account')
-        click_link('Register for one!')
-        fill_in('email', :with => email)
-        fill_in('password', :with => password)
-        fill_in('password_confirmation', :with => password_confirmation)
-        click_button("Submit")
+        sign_up!
 
         expect(page).to have_current_path('/sign-up')
         expect(page).to have_content("Passwords dont match")
@@ -45,13 +40,7 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
       let(:password_confirmation) { 'hey' }
 
       it "displays email error message" do
-        visit('/')
-        click_link('Account')
-        click_link('Register for one!')
-        fill_in('email', :with => email)
-        fill_in('password', :with => password)
-        fill_in('password_confirmation', :with => password_confirmation)
-        click_button("Submit")
+        sign_up!
 
         expect(page).to have_current_path('/sign-up')
         expect(page).to have_content("password is too short (minimum is 6 characters)")
@@ -61,17 +50,21 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
     context "valid params" do
       it "sign the user up, in, and redircts to home page" do
         expect(User.count).to eq(0)
-        visit('/')
-        click_link('Account')
-        click_link('Register for one!')
-        fill_in('email', :with => email)
-        fill_in('password', :with => password)
-        fill_in('password_confirmation', :with => password_confirmation)
-        click_button("Submit")
+        sign_up!
 
         expect(page).to have_current_path('/')
         expect(User.count).to eq(1)
       end
     end
+  end
+
+  def submit_action(email:, password:, password_confirmation:)
+    visit('/')
+    click_link('Account')
+    click_link('Register for one!')
+    fill_in('email', :with => email)
+    fill_in('password', :with => password)
+    fill_in('password_confirmation', :with => password_confirmation)
+    click_button("Submit")
   end
 end
