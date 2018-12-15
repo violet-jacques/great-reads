@@ -1,10 +1,10 @@
-import React from 'react';
-import { MemoryRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import helpers from './helpers';
+import React from "react";
+import { MemoryRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import helpers from "./helpers";
 
-describe('mountWithRouter', () => {
-  it('renders the component with a router', () => {
+describe("mountWithRouter", () => {
+  it("renders the component with a router", () => {
     const FakeComponent = () => <div>Hello</div>;
     const wrapper = helpers.mountWithRouter(<FakeComponent />);
 
@@ -12,8 +12,8 @@ describe('mountWithRouter', () => {
   });
 });
 
-describe('mountWithStore', () => {
-  it('renders the component with a store', () => {
+describe("mountWithStore", () => {
+  it("renders the component with a store", () => {
     const FakeComponent = () => <div>Hello</div>;
     const wrapper = helpers.mount(<FakeComponent />);
 
@@ -21,10 +21,10 @@ describe('mountWithStore', () => {
   });
 });
 
-describe('removeObjectFromArray', () => {
-  it('returns array without passed in object', () => {
-    const obj = { foo: 'bar' };
-    const obj2 = { bah: 'baz' };
+describe("removeObjectFromArray", () => {
+  it("returns array without passed in object", () => {
+    const obj = { foo: "bar" };
+    const obj2 = { bah: "baz" };
     const array = [obj, obj2];
     const expectedArray = [obj];
 

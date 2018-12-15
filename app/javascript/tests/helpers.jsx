@@ -1,8 +1,8 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import { MemoryRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
+import React from "react";
+import configureStore from "redux-mock-store";
+import { MemoryRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { mount } from "enzyme";
 
 const mountWithStore = (component, state = {}) => {
   const mockStore = configureStore();

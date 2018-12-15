@@ -1,11 +1,11 @@
 export default {
   signIn: form => (
     global.fetch(
-      '/users/sign_in',
+      "/users/sign_in",
       {
-        method: 'post',
+        method: "post",
         headers: {
-          'Content-type': 'application/json',
+          "Content-type": "application/json",
         },
         body: JSON.stringify({ user: form }),
       },
@@ -13,11 +13,11 @@ export default {
   ),
   signUp: form => (
     global.fetch(
-      '/users/sign_up',
+      "/users/sign_up",
       {
-        method: 'post',
+        method: "post",
         headers: {
-          'Content-type': 'application/json',
+          "Content-type": "application/json",
         },
         body: JSON.stringify({ user: form }),
       },
