@@ -1,5 +1,5 @@
-import homeRouteConfig from "../../../routes/routeConfig/homeRouteConfig";
-import Home from "../../../pages/HomePage";
+import homeRouteConfig from "../../../routes/routeConfig/home";
+import Home from "../../../pages/home";
 
 describe("root path route config", () => {
   it("routes to the home component", () => {

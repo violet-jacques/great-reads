@@ -1,36 +1,36 @@
-import homeRouteConfig from "../../../routes/routeConfig/homeRouteConfig";
-import routeConfig from "../../../routes/routeConfig/routeConfig";
-import signInRouteConfig from "../../../routes/routeConfig/signInRouteConfig";
-import signUpRouteConfig from "../../../routes/routeConfig/signUpRouteConfig";
+import home from "../../../routes/routeConfig/home";
+import routeConfig from "../../../routes/routeConfig";
+import signIn from "../../../routes/routeConfig/signIn";
+import signUp from "../../../routes/routeConfig/signUp";
 import testHelpers from "../../helpers";
 
 describe("routeConfig", () => {
   let clonedRouteConfig = Object.assign([], routeConfig);
 
   it("contains rootRouteConfig", () => {
-    expect(clonedRouteConfig).toContain(homeRouteConfig);
+    expect(clonedRouteConfig).toContain(home);
 
     clonedRouteConfig = testHelpers.removeObjectFromArray(
       clonedRouteConfig,
-      homeRouteConfig,
+      home,
     );
   });
 
-  it("contains signInRouteConfig", () => {
-    expect(clonedRouteConfig).toContain(signInRouteConfig);
+  it("contains signIn", () => {
+    expect(clonedRouteConfig).toContain(signIn);
 
     clonedRouteConfig = testHelpers.removeObjectFromArray(
       clonedRouteConfig,
-      signInRouteConfig,
+      signIn,
     );
   });
 
   it("contains signUpRouteConfig", () => {
-    expect(clonedRouteConfig).toContain(signUpRouteConfig);
+    expect(clonedRouteConfig).toContain(signUp);
 
     clonedRouteConfig = testHelpers.removeObjectFromArray(
       clonedRouteConfig,
-      signUpRouteConfig,
+      signUp,
     );
   });
 

@@ -1,4 +1,4 @@
-import headerReducer from "../../reducers/headerReducer";
+import headerReducer from "../../reducers/header";
 
 describe("headerReducer", () => {
   describe("initialState", () => {

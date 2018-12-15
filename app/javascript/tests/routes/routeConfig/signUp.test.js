@@ -1,5 +1,5 @@
-import signUpRouteConfig from "../../../routes/routeConfig/signUpRouteConfig";
-import SignUp from "../../../pages/SignUpPage";
+import signUpRouteConfig from "../../../routes/routeConfig/signUp";
+import SignUp from "../../../pages/signUp";
 
 describe("signUp path route config", () => {
   it("routes to the SignUp component", () => {
