@@ -14,6 +14,7 @@ RSpec.describe 'RegistrationsController', :type => :request do
         }
       }
     end
+    let(:post!) { post '/users/sign_up', :params => params }
 
     context 'invalid params' do
       context 'email in use' do
@@ -27,7 +28,7 @@ RSpec.describe 'RegistrationsController', :type => :request do
         end
 
         it 'returns an email error json response' do
-          post '/users/sign_up', :params => params
+          post!
           response = JSON.parse(body)
 
           expect(response).to eq('error' => 'Email already in use')
@@ -38,7 +39,7 @@ RSpec.describe 'RegistrationsController', :type => :request do
         let(:password) { 'whatsup' }
 
         it 'returns a password error json response' do
-          post '/users/sign_up', :params => params
+          post!
           response = JSON.parse(body)
 
           expect(response).to eq('error' => "Passwords dont match")
@@ -49,12 +50,12 @@ RSpec.describe 'RegistrationsController', :type => :request do
     context 'valid params' do
       it 'creates the user' do
         expect do
-          post '/users/sign_up', :params => params
+          post!
         end.to change { User.count }.by(1)
       end
 
       it "returns the user as a json response" do
-        post '/users/sign_up', :params => params
+        post!
 
         response = JSON.parse(body)
 
