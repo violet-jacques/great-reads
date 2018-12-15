@@ -1,6 +1,6 @@
-import userApi from '../../api/userApi';
-import genericAction from '../genericAction';
-import { SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from '../../actionTypes';
+import userApi from "../../api/userApi";
+import genericAction from "../genericAction";
+import { SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from "../../actionTypes";
 
 const handleSuccessSignUp = (dispatch, history, user) => {
   dispatch(
@@ -9,7 +9,7 @@ const handleSuccessSignUp = (dispatch, history, user) => {
       user,
     ),
   );
-  history.push('/');
+  history.push("/");
 };
 
 const handleFailureSignUp = (dispatch, error) => {
