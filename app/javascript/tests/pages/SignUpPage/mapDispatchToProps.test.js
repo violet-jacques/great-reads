@@ -1,38 +1,38 @@
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
 
-import mapDispatchToProps from '../../../pages/SignUpPage/mapDispatchToProps';
+import mapDispatchToProps from "../../../pages/SignUpPage/mapDispatchToProps";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore();
 
-describe('mapDispatchToProps', () => {
+describe("mapDispatchToProps", () => {
   const props = mapDispatchToProps(store.dispatch);
 
-  describe('onSubmit', () => {
+  describe("onSubmit", () => {
     const { onSubmit } = props;
     const history = { push: jest.fn() };
     const form = {
-      email: 'test@example.com',
-      password: 'password',
-      password_confirmation: 'password',
+      email: "test@example.com",
+      password: "password",
+      password_confirmation: "password",
     };
     beforeEach(() => {
       global.fetch.resetMocks();
       global.fetch.mockResponse(JSON.stringify({
         success: true,
-        user: { id: 1, email: 'hey', role: 'sup' },
+        user: { id: 1, email: "hey", role: "sup" },
       }));
     });
-    it('', () => {
+    it("dispatches the correct action", () => {
       const expectedAction = {
         payload: {
-          email: 'hey',
+          email: "hey",
           id: 1,
-          role: 'sup',
+          role: "sup",
         },
-        type: 'SIGN_UP_SUCCESS',
+        type: "SIGN_UP_SUCCESS",
       };
 
       onSubmit(history)(form)
