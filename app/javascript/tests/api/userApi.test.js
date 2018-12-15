@@ -1,8 +1,8 @@
-import userApi from '../../api/userApi';
+import userApi from "../../api/userApi";
 
-describe('userApi', () => {
-  describe('signIn', () => {
-    const form = { email: 'test@example.com', password: 'password!' };
+describe("userApi", () => {
+  describe("signIn", () => {
+    const form = { email: "test@example.com", password: "password!" };
     let fetchCall;
 
     beforeEach(() => {
@@ -13,24 +13,24 @@ describe('userApi', () => {
       [fetchCall] = global.fetch.mock.calls;
     });
 
-    it('calls fetch once and with the correct parameters', () => {
+    it("calls fetch once and with the correct parameters", () => {
       const url = fetchCall[0];
       const params = fetchCall[1];
       const { method, headers, body } = params;
 
       expect(global.fetch.mock.calls.length).toEqual(1);
-      expect(url).toEqual('/users/sign_in');
-      expect(method).toEqual('post');
-      expect(headers).toEqual({ 'Content-type': 'application/json' });
+      expect(url).toEqual("/users/sign_in");
+      expect(method).toEqual("post");
+      expect(headers).toEqual({ "Content-type": "application/json" });
       expect(body).toEqual(JSON.stringify({ user: form }));
     });
   });
 
-  describe('signUp', () => {
+  describe("signUp", () => {
     const form = {
-      email: 'test@example.com',
-      password: 'password!',
-      password_confirmation: 'password!',
+      email: "test@example.com",
+      password: "password!",
+      password_confirmation: "password!",
     };
     let fetchCall;
 
@@ -42,15 +42,15 @@ describe('userApi', () => {
       [fetchCall] = global.fetch.mock.calls;
     });
 
-    it('calls fetch once and with the correct parameters', () => {
+    it("calls fetch once and with the correct parameters", () => {
       const url = fetchCall[0];
       const params = fetchCall[1];
       const { method, headers, body } = params;
 
       expect(global.fetch.mock.calls.length).toEqual(1);
-      expect(url).toEqual('/users/sign_up');
-      expect(method).toEqual('post');
-      expect(headers).toEqual({ 'Content-type': 'application/json' });
+      expect(url).toEqual("/users/sign_up");
+      expect(method).toEqual("post");
+      expect(headers).toEqual({ "Content-type": "application/json" });
       expect(body).toEqual(JSON.stringify({ user: form }));
     });
   });
