@@ -11,7 +11,7 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
 
       it "displays email error message" do
         visit('/')
-        click_link('account')
+        click_link('Account')
         click_link('Register for one!')
         fill_in('email', :with => email)
         fill_in('password', :with => password)
@@ -28,7 +28,7 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
 
       it "displays email error message" do
         visit('/')
-        click_link('account')
+        click_link('Account')
         click_link('Register for one!')
         fill_in('email', :with => email)
         fill_in('password', :with => password)
@@ -46,7 +46,7 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
 
       it "displays email error message" do
         visit('/')
-        click_link('account')
+        click_link('Account')
         click_link('Register for one!')
         fill_in('email', :with => email)
         fill_in('password', :with => password)
@@ -62,7 +62,7 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
       it "sign the user up, in, and redircts to home page" do
         expect(User.count).to eq(0)
         visit('/')
-        click_link('account')
+        click_link('Account')
         click_link('Register for one!')
         fill_in('email', :with => email)
         fill_in('password', :with => password)
