@@ -1,5 +1,5 @@
-import React from 'react';
-import { Field } from 'redux-form';
+import React from "react";
+import { Field } from "redux-form";
 
 export default ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>

@@ -1,4 +1,4 @@
-import userActions from '../../actions/userActions';
+import userActions from "../../actions/userActions";
 
 export default dispatch => {
   const { signInAction } = userActions;

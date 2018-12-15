@@ -1,3 +1,10 @@
+import {
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  SIGN_UP_FAILURE,
+  SIGN_UP_SUCCESS,
+} from "../actionTypes";
+
 const initialState = {
   isLoggedIn: false,
 };
@@ -7,39 +14,36 @@ export default (
   { type, payload },
 ) => {
   switch (type) {
-    case 'LOGIN_FAILURE':
+    case LOGIN_FAILURE:
       return {
         ...state,
         loginErrorMessage: payload,
       };
-    case 'LOGIN_SUCCESS': {
-      const { email, id, role } = payload;
+    case LOGIN_SUCCESS: {
+      const { email, id } = payload;
 
       return {
         ...state,
         email,
         id,
         isLoggedIn: true,
-        role,
       };
     }
-    case 'SIGN_UP_FAILURE':
+    case SIGN_UP_FAILURE:
       return {
         ...state,
         signUpErrorMessage: payload,
       };
-    case 'SIGN_UP_SUCCESS': {
-      const { email, id, role } = payload;
+    case SIGN_UP_SUCCESS: {
+      const { email, id } = payload;
 
       return {
         ...state,
         email,
         id,
         isLoggedIn: true,
-        role,
       };
     }
-
     default:
       return state;
   }
