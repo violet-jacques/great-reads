@@ -16,7 +16,7 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
     context "with valid params" do
       it "signs the user in" do
         visit('/')
-        click_link('account')
+        click_link('Account')
         fill_in('email', :with => email)
         fill_in('password', :with => password)
         click_button("Submit")

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Header from '../../../components/layout/HeaderComponent';
+import Header from '../../../components/header/HeaderComponent';
 import testHelpers from '../../helpers';
 
 describe('Header', () => {
@@ -21,10 +21,6 @@ describe('Header', () => {
   });
 
   describe('account link', () => {
-    it('renders a link', () => {
-      expect(wrapper.find(Link)).toHaveLength(1);
-    });
-
     describe('when the user is logged in', () => {
       const newState = {
         user: {
@@ -37,7 +33,7 @@ describe('Header', () => {
       });
 
       it('renders a link to the account page', () => {
-        expect(wrapper.find(Link).props().to).toEqual('/account');
+        expect(wrapper.find(Link).last().props().to).toEqual('/account');
       });
     });
 
@@ -53,7 +49,7 @@ describe('Header', () => {
       });
 
       it('renders a link to the sign-in page', () => {
-        expect(wrapper.find(Link).props().to).toEqual('/sign-in');
+        expect(wrapper.find(Link).last().props().to).toEqual('/sign-in');
       });
     });
   });
