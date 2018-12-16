@@ -19,7 +19,7 @@ describe("userApi", () => {
       const { method, headers, body } = params;
 
       expect(global.fetch.mock.calls.length).toEqual(1);
-      expect(url).toEqual("/users/sign_in");
+      expect(url).toEqual("/api/users/sign_in");
       expect(method).toEqual("post");
       expect(headers).toEqual({ "Content-type": "application/json" });
       expect(body).toEqual(JSON.stringify({ user: form }));
@@ -48,7 +48,7 @@ describe("userApi", () => {
       const { method, headers, body } = params;
 
       expect(global.fetch.mock.calls.length).toEqual(1);
-      expect(url).toEqual("/users/sign_up");
+      expect(url).toEqual("/api/users/sign_up");
       expect(method).toEqual("post");
       expect(headers).toEqual({ "Content-type": "application/json" });
       expect(body).toEqual(JSON.stringify({ user: form }));
