@@ -1,7 +1,7 @@
 const request = (form, path) => {
   return (
     global.fetch(
-      `/users/${path}`,
+      `/api/users/${path}`,
       {
         method: "post",
         headers: {
