@@ -21,11 +21,11 @@ export default form => (
   dispatch => (
     userApi.signUp(form)
       .then(response => {
-        const { toggleModal } = modalActions;
+        const { hideModal } = modalActions;
         const { success } = response;
 
         if (success) {
-          dispatch(toggleModal());
+          dispatch(hideModal());
         }
 
         dispatch(handleResponse(response));

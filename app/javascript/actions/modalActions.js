@@ -1,10 +1,16 @@
 import genericAction from "./genericAction";
-import { TOGGLE_MODAL, SET_MODAL_TYPE } from "../actionTypes";
+import { SHOW_MODAL, HIDE_MODAL, SET_MODAL_TYPE } from "../actionTypes";
 
 export default {
-  toggleModal: () => {
+  hideModal: () => {
     return genericAction(
-      TOGGLE_MODAL,
+      HIDE_MODAL,
+    );
+  },
+
+  showModal: () => {
+    return genericAction(
+      SHOW_MODAL,
     );
   },
 

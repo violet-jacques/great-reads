@@ -36,7 +36,7 @@ describe("Modal", () => {
       it("closes the modal", () => {
         wrapper.find(".modal").prop("onClick")(event);
         const expectedAction = {
-          type: "TOGGLE_MODAL",
+          type: "HIDE_MODAL",
         };
         expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
       });
@@ -46,7 +46,7 @@ describe("Modal", () => {
       it("closes the modal", () => {
         wrapper.find(".close").prop("onClick")();
         const expectedAction = {
-          type: "TOGGLE_MODAL",
+          type: "HIDE_MODAL",
         };
         expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
       });
@@ -64,7 +64,7 @@ describe("Modal", () => {
       it("does not close the modal", () => {
         wrapper.find(".modal").prop("onClick")(newEvent);
         const expectedAction = {
-          type: "TOGGLE_MODAL",
+          type: "HIDE_MODAL",
         };
         expect(wrapper.props().store.getActions()).not.toContainEqual(expectedAction);
       });

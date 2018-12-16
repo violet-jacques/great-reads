@@ -11,13 +11,13 @@ describe("mapDispatchToProps", () => {
   const props = mapDispatchToProps(store.dispatch);
 
   describe("setActiveNavItem", () => {
-    const { toggleModal } = props;
+    const { hideModal } = props;
 
     it("returns the expected action", () => {
       const expectedAction = {
-        type: "TOGGLE_MODAL",
+        type: "HIDE_MODAL",
       };
-      toggleModal();
+      hideModal();
 
       expect(store.getActions()).toContainEqual(expectedAction);
     });
