@@ -94,7 +94,7 @@ describe("Header", () => {
       it("renders the sign in modal", () => {
         wrapper.find("li").last().prop("onClick")();
         const firstExpectedAction = {
-          type: "TOGGLE_MODAL",
+          type: "SHOW_MODAL",
         };
         const secondExpectedAction = {
           type: "SET_MODAL_TYPE",

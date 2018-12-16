@@ -2,7 +2,7 @@ import React from "react";
 import SignIn from "../../components/signIn";
 import SignUp from "../../components/signUp";
 
-export default ({ toggleModal, type }) => {
+export default ({ hideModal, type }) => {
   const modalContent = () => {
     switch(type) {
       case "signUp":
@@ -16,14 +16,14 @@ export default ({ toggleModal, type }) => {
 
   const closeModal = e => {
     if (e.target.classList.value === "modal") {
-      toggleModal();
+      hideModal();
     }
   };
 
   return (
     <div className="modal" onClick={closeModal}>
       <div className="modal-content">
-        <span className="close" onClick={toggleModal}>&times;</span>
+        <span className="close" onClick={hideModal}>&times;</span>
         {modalContent()}
       </div>
     </div>

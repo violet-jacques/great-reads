@@ -3,13 +3,13 @@ import modalActions from "../../../actions/modalActions";
 
 export default dispatch => {
   const { setActiveNavItem } = headerActions;
-  const { toggleModal, setModalType } = modalActions;
+  const { showModal, setModalType } = modalActions;
 
   return {
     setActiveNavItem: navItem => () => dispatch(setActiveNavItem(navItem)),
     signIn: () => {
       dispatch(setModalType("signIn"));
-      dispatch(toggleModal());
+      dispatch(showModal());
     }
   };
 };
