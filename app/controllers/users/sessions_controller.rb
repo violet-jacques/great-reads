@@ -4,6 +4,8 @@ class Users::SessionsController < Devise::SessionsController
   PASSWORD_INVALID = "Password invalid".freeze
 
   def create
+    return render json: { success: true, user: current_user.to_h } if current_user
+
     if !user
       render json: { error: EMAIL_ERROR }
     elsif !valid_password?

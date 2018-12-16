@@ -1,4 +1,4 @@
-import { TOGGLE_MODAL, SET_MODAL_TYPE } from "../actionTypes";
+import { SHOW_MODAL, HIDE_MODAL, SET_MODAL_TYPE } from "../actionTypes";
 
 
 const initialState = {
@@ -11,10 +11,15 @@ export default (
   { type, payload },
 ) => {
   switch (type) {
-    case TOGGLE_MODAL:
+    case HIDE_MODAL:
       return {
         ...state,
-        open: !state.open,
+        open: false,
+      };
+    case SHOW_MODAL:
+      return {
+        ...state,
+        open: true,
       };
     case SET_MODAL_TYPE:
       return {

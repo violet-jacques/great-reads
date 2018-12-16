@@ -1,11 +1,11 @@
 import modalActions from "../../actions/modalActions";
 
 export default dispatch => {
-  const { toggleModal } = modalActions;
+  const { hideModal } = modalActions;
 
   return {
-    toggleModal: () => {
-      dispatch(toggleModal());
+    hideModal: () => {
+      dispatch(hideModal());
     }
   };
 };
