@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import SignInForm from "../../forms/signIn";
 
 export default ({
-  history,
   loginErrorMessage,
   onSubmit,
+  register,
 }) => {
   const renderErrorMessage = () => {
     if (loginErrorMessage) {
@@ -21,7 +21,7 @@ export default ({
   const renderSignUp = () => (
     <div>
       <p>Don&apos;t have an account?</p>
-      <Link to="/sign-up">Register for one!</Link>
+      <a onClick={register}>Register for one!</a>
     </div>
   );
 
@@ -30,7 +30,7 @@ export default ({
       <div>Sign In?</div>
       {renderErrorMessage()}
       <SignInForm
-        onSubmit={onSubmit(history)}
+        onSubmit={onSubmit}
       />
       {renderSignUp()}
     </Fragment>

@@ -3,7 +3,6 @@ import React, { Fragment } from "react";
 import SignUpForm from "../../forms/signUp";
 
 export default ({
-  history,
   signUpErrorMessage,
   onSubmit,
 }) => {
@@ -22,7 +21,7 @@ export default ({
       <div>Sign Up?</div>
       {renderErrorMessage()}
       <SignUpForm
-        onSubmit={onSubmit(history)}
+        onSubmit={onSubmit}
       />
     </Fragment>
   );
