@@ -91,8 +91,18 @@ describe("Header", () => {
     });
 
     describe("when the user is not logged in", () => {
-      it("renders a link to the sign-in page", () => {
-        expect(wrapper.find(Link).last().props().to).toEqual("/sign-in");
+      it("renders the sign in modal", () => {
+        wrapper.find("li").last().prop("onClick")();
+        const firstExpectedAction = {
+          type: "TOGGLE_MODAL",
+        };
+        const secondExpectedAction = {
+          type: "SET_MODAL_TYPE",
+          payload: "signIn",
+        };
+
+        expect(wrapper.props().store.getActions()).toContainEqual(firstExpectedAction);
+        expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
       });
     });
   });
