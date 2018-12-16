@@ -32,7 +32,7 @@ describe("mapDispatchToProps", () => {
 
     it("returns the expected actions", () => {
       const expectedAction = {
-        type: "TOGGLE_MODAL",
+        type: "SHOW_MODAL",
       };
       const secondExpectedAction = {
         type: "SET_MODAL_TYPE",

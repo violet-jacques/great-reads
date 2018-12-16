@@ -24,7 +24,7 @@ describe("signInAction", () => {
         payload: { id: 1, email: "hey" },
       };
       const secondExpectedAction = {
-        type: "TOGGLE_MODAL",
+        type: "HIDE_MODAL",
       };
 
       return store.dispatch(signInAction(form))

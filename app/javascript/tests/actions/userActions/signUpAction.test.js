@@ -29,7 +29,7 @@ describe("signUpAction", () => {
         payload: { id: 1, email: "hey" },
       };
       const secondExpectedAction = {
-        type: "TOGGLE_MODAL",
+        type: "HIDE_MODAL",
       };
 
       return store.dispatch(signUpAction(form))
