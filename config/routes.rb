@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "/*path", to: "home#home"
 
   devise_scope :user do
-    post "users/sign_in", to: "users/sessions#create"
-    post "users/sign_up", to: "users/registrations#create"
+    post "api/users/sign_in", to: "api/users/sessions#create"
+    post "api/users/sign_up", to: "api/users/registrations#create"
   end
 end
