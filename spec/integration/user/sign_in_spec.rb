@@ -48,7 +48,7 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
 
   def sign_in_action(email:, password:)
     visit('/')
-    click_link('Account')
+    find("a", text: "Account").click
     fill_in('email', :with => email)
     fill_in('password', :with => password)
     click_button("Submit")

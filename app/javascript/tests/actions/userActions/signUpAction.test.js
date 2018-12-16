@@ -18,7 +18,6 @@ describe("signUpAction", () => {
     });
 
     it("signs up the user and updates the state with the response", () => {
-      const history = { push: jest.fn() };
       const form = {
         email: "hello@example.com",
         password: "password",
@@ -29,14 +28,16 @@ describe("signUpAction", () => {
         type: "SIGN_UP_SUCCESS",
         payload: { id: 1, email: "hey" },
       };
+      const secondExpectedAction = {
+        type: "TOGGLE_MODAL",
+      };
 
-      return store.dispatch(signUpAction(history, form))
+      return store.dispatch(signUpAction(form))
         .then(() => {
           const expectedActions = store.getActions();
-          expect(expectedActions.length).toBe(1);
+          expect(expectedActions.length).toBe(2);
           expect(expectedActions).toContainEqual(expectedAction);
-          expect(history.push.mock.calls.length).toEqual(1);
-          expect(history.push.mock.calls[0][0]).toEqual("/");
+          expect(expectedActions).toContainEqual(secondExpectedAction);
         });
     });
   });
@@ -51,7 +52,6 @@ describe("signUpAction", () => {
 
     it("doesnt sign up the user and update the sign up error state ", () => {
       const newStore = mockStore();
-      const history = { goBack: jest.fn() };
       const form = {
         email: "slime",
         password: "password",
@@ -62,12 +62,11 @@ describe("signUpAction", () => {
         payload: "Email already in use",
       };
 
-      return newStore.dispatch(signUpAction(history, form))
+      return newStore.dispatch(signUpAction(form))
         .then(() => {
           const expectedActions = newStore.getActions();
           expect(expectedActions.length).toBe(1);
           expect(expectedActions).toContainEqual(expectedAction);
-          expect(history.goBack.mock.calls.length).toEqual(0);
         });
     });
   });

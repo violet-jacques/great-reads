@@ -1,24 +1,23 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import mapDispatchToProps from "../../../components/header/mapDispatchToProps";
+import mapDispatchToProps from "../../../components/modal/mapDispatchToProps";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
+const store = mockStore();
 
 describe("mapDispatchToProps", () => {
+  const props = mapDispatchToProps(store.dispatch);
+
   describe("setActiveNavItem", () => {
-    const store = mockStore();
-    const props = mapDispatchToProps(store.dispatch);
-    const { setActiveNavItem } = props;
-    const navItem = "navItem";
+    const { toggleModal } = props;
 
     it("returns the expected action", () => {
       const expectedAction = {
-        payload: navItem,
-        type: "SET_ACTIVE_NAV_ITEM",
+        type: "TOGGLE_MODAL",
       };
-      setActiveNavItem(navItem)();
+      toggleModal();
 
       expect(store.getActions()).toContainEqual(expectedAction);
     });

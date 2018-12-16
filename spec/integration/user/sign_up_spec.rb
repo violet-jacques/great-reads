@@ -1,9 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'Sign up integration', type: :feature, js: true do
+RSpec.describe "Sign up integration", type: :feature, js: true do
   describe "signing up" do
-    let(:email) { 'test@example.com' }
-    let(:password) { 'password' }
+    let(:email) { "test@example.com" }
+    let(:password) { "password" }
     let(:password_confirmation) { password }
     let(:sign_up!) do
       submit_action(
@@ -19,30 +19,30 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
       it "displays email error message" do
         sign_up!
 
-        expect(page).to have_current_path('/sign-up')
-        expect(page).to have_content('Email already in use')
+        expect(page).to have_current_path("/")
+        expect(page).to have_content("Email already in use")
       end
     end
 
     context "passwords dont match" do
-      let(:password_confirmation) { 'wrong_password' }
+      let(:password_confirmation) { "wrong_password" }
 
       it "displays email error message" do
         sign_up!
 
-        expect(page).to have_current_path('/sign-up')
+        expect(page).to have_current_path("/")
         expect(page).to have_content("Passwords dont match")
       end
     end
 
     context "passwords too short" do
-      let(:password) { 'hey' }
-      let(:password_confirmation) { 'hey' }
+      let(:password) { "hey" }
+      let(:password_confirmation) { "hey" }
 
       it "displays email error message" do
         sign_up!
 
-        expect(page).to have_current_path('/sign-up')
+        expect(page).to have_current_path("/")
         expect(page).to have_content("password is too short (minimum is 6 characters)")
       end
     end
@@ -52,19 +52,20 @@ RSpec.describe 'Sign up integration', type: :feature, js: true do
         expect(User.count).to eq(0)
         sign_up!
 
-        expect(page).to have_current_path('/')
+        sleep 1
+
         expect(User.count).to eq(1)
       end
     end
   end
 
   def submit_action(email:, password:, password_confirmation:)
-    visit('/')
-    click_link('Account')
-    click_link('Register for one!')
-    fill_in('email', :with => email)
-    fill_in('password', :with => password)
-    fill_in('password_confirmation', :with => password_confirmation)
+    visit("/")
+    find("a", text: "Account").click
+    find("a", text: "Register for one!").click
+    fill_in("email", :with => email)
+    fill_in("password", :with => password)
+    fill_in("password_confirmation", :with => password_confirmation)
     click_button("Submit")
   end
 end

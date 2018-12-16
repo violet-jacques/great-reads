@@ -1,7 +1,7 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import mapDispatchToProps from "../../../pages/signIn/mapDispatchToProps";
+import mapDispatchToProps from "../../../components/signUp/mapDispatchToProps";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -12,8 +12,12 @@ describe("mapDispatchToProps", () => {
 
   describe("onSubmit", () => {
     const { onSubmit } = props;
-    const history = { goBack: jest.fn() };
-    const form = { email: "test@example.com", password: "password" };
+    const form = {
+      email: "test@example.com",
+      password: "password",
+      password_confirmation: "password",
+    };
+
     beforeEach(() => {
       global.fetch.resetMocks();
       global.fetch.mockResponse(JSON.stringify({
@@ -21,17 +25,18 @@ describe("mapDispatchToProps", () => {
         user: { id: 1, email: "hey", role: "sup" },
       }));
     });
-    it("dispatches the correct actions", () => {
+
+    it("dispatches the correct action", () => {
       const expectedAction = {
         payload: {
           email: "hey",
           id: 1,
           role: "sup",
         },
-        type: "LOGIN_SUCCESS",
+        type: "SIGN_UP_SUCCESS",
       };
 
-      onSubmit(history)(form)
+      onSubmit(form)
         .then(() => {
           expect(store.getActions()).toContainEqual(expectedAction);
         });

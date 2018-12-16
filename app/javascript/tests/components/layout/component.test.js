@@ -1,8 +1,9 @@
 import React from "react";
 import testHelpers from "../../helpers";
-import Layout from "../../../components/layout/component";
-import Header from "../../../components/header";
 import Footer from "../../../components/layout/footer";
+import Header from "../../../components/header";
+import Layout from "../../../components/layout";
+import Modal from "../../../components/modal";
 
 describe("Layout", () => {
   let wrapper;
@@ -16,7 +17,10 @@ describe("Layout", () => {
         browse: false,
         community: false,
       }
-    }
+    },
+    modal: {
+      open: false,
+    },
   };
 
   beforeEach(() => {
@@ -44,5 +48,26 @@ describe("Layout", () => {
     );
 
     expect(newWrapper.find(FakeComponent)).toHaveLength(1);
+  });
+
+  it("does not render the modal by default", () => {
+    expect(wrapper.find(Modal)).toHaveLength(0);
+  });
+
+  describe("when the modalOpen prop is true", () => {
+    const newState = {
+      ...state,
+      modal: {
+        open: true,
+      }
+    };
+
+    beforeEach(() => {
+      wrapper = testHelpers.mountWithRouter(<Layout />, newState);
+    });
+
+    it("renders the modal component", () => {
+      expect(wrapper.find(Modal)).toHaveLength(1);
+    });
   });
 });

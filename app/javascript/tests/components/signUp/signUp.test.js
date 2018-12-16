@@ -1,6 +1,6 @@
 import React from "react";
 import testHelpers from "../../helpers";
-import SignUp from "../../../pages/signUp";
+import SignUp from "../../../components/signUp";
 import SignUpForm from "../../../forms/signUp";
 
 describe("SignUp", () => {
