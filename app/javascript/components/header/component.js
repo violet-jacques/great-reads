@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Account from "./account";
 import Browse from "./browse";
 import Community from "./community";
 
 export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
-  const path = isLoggedIn ? "/account" : "/sign-in";
-
   const activeDetermination = navItem => {
     if (navItem === activeNavItem) {
       return "header--nav-item-active";
@@ -50,12 +49,9 @@ export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
       >
         <div>Notifications</div>
       </li>
-      <li
-        className={activeDetermination("account")}
-        onClick={setActiveNavItem("account")}
-      >
-        <Link to={path}>Account</Link>
-      </li>
+      <Account
+        activeDetermination={activeDetermination}
+      />
     </ul>
   );
 };

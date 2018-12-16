@@ -5,9 +5,7 @@ import mapStateToProps from "./mapStateToProps";
 import mapDispatchToProps from "./mapDispatchToProps";
 import SignUp from "./component";
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(SignUp),
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUp);

@@ -18,19 +18,21 @@ describe("signInAction", () => {
     });
 
     it("signs in the user and updates the state with the response", () => {
-      const history = { goBack: jest.fn() };
       const form = { email: "hello@example.com", password: "password" };
       const expectedAction = {
         type: "LOGIN_SUCCESS",
         payload: { id: 1, email: "hey" },
       };
+      const secondExpectedAction = {
+        type: "TOGGLE_MODAL",
+      };
 
-      return store.dispatch(signInAction(history, form))
+      return store.dispatch(signInAction(form))
         .then(() => {
           const expectedActions = store.getActions();
-          expect(expectedActions.length).toBe(1);
+          expect(expectedActions.length).toBe(2);
           expect(expectedActions).toContainEqual(expectedAction);
-          expect(history.goBack.mock.calls.length).toEqual(1);
+          expect(expectedActions).toContainEqual(secondExpectedAction);
         });
     });
   });
@@ -45,19 +47,17 @@ describe("signInAction", () => {
 
     it("signs in the user and updates the state with the response", () => {
       const newStore = mockStore();
-      const history = { goBack: jest.fn() };
       const form = { email: "slime", password: "password" };
       const expectedAction = {
         type: "LOGIN_FAILURE",
         payload: "Email invalid",
       };
 
-      return newStore.dispatch(signInAction(history, form))
+      return newStore.dispatch(signInAction(form))
         .then(() => {
           const expectedActions = newStore.getActions();
           expect(expectedActions.length).toBe(1);
           expect(expectedActions).toContainEqual(expectedAction);
-          expect(history.goBack.mock.calls.length).toEqual(0);
         });
     });
   });
