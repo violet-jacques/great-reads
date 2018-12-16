@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181216225003) do
+ActiveRecord::Schema.define(version: 20181216230708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,23 @@ ActiveRecord::Schema.define(version: 20181216225003) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "variants", force: :cascade do |t|
+    t.date "published_at", null: false
+    t.string "published_by", null: false
+    t.string "isbn", null: false
+    t.string "language", null: false
+    t.integer "format", null: false
+    t.integer "pages", null: false
+    t.bigint "book_id", null: false
+    t.index ["book_id"], name: "index_variants_on_book_id"
+    t.index ["format"], name: "index_variants_on_format"
+    t.index ["isbn"], name: "index_variants_on_isbn", unique: true
+    t.index ["language"], name: "index_variants_on_language"
+    t.index ["pages"], name: "index_variants_on_pages"
+    t.index ["published_at"], name: "index_variants_on_published_at"
+    t.index ["published_by"], name: "index_variants_on_published_by"
   end
 
 end
