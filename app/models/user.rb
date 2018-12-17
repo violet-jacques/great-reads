@@ -10,7 +10,9 @@ class User < ApplicationRecord
   def to_h
     {
       id: id,
-      email: email
+      email: email,
+      first_name: first_name,
+      last_name: last_name,
     }
   end
 end
