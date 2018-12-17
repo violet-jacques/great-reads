@@ -17,12 +17,16 @@ describe("userReducer", () => {
         payload: {
           email: "test@example.com",
           id: 1,
+          first_name: "sup",
+          last_name: "dawg",
         },
       };
       const expectedState = {
         email: "test@example.com",
         id: 1,
         isLoggedIn: true,
+        firstName: "sup",
+        lastName: "dawg",
       };
 
       expect(userReducer(currentState, action)).toEqual(expectedState);
@@ -53,12 +57,16 @@ describe("userReducer", () => {
         payload: {
           email: "test@example.com",
           id: 1,
+          first_name: "sup",
+          last_name: "dawg",
         },
       };
       const expectedState = {
         email: "test@example.com",
         id: 1,
         isLoggedIn: true,
+        firstName: "sup",
+        lastName: "dawg",
       };
 
       expect(userReducer(currentState, action)).toEqual(expectedState);
