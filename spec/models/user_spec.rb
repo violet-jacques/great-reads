@@ -6,6 +6,11 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of(:email).case_insensitive }
   end
 
+  describe "associations" do
+    it { should have_many(:user_books) }
+    it { should have_many(:books).through(:user_books) }
+  end
+
   describe '#to_h' do
     let(:user) { create(:user) }
 
