@@ -63,6 +63,8 @@ RSpec.describe "Sign up integration", type: :feature, js: true do
     visit("/")
     find("a", text: "Account").click
     find("a", text: "Register for one!").click
+    fill_in("first_name", :with => "Sup")
+    fill_in("last_name", :with => "Dawg")
     fill_in("email", :with => email)
     fill_in("password", :with => password)
     fill_in("password_confirmation", :with => password_confirmation)

@@ -59,6 +59,8 @@ module Api
               "user" => {
                 "id" => user.id,
                 "email" => "test@example.com",
+                "first_name" => "User",
+                "last_name" => "Name",
               }
             )
             post "/api/users/sign_in", :params => {
@@ -75,6 +77,8 @@ module Api
               "user" => {
                 "id" => user.id,
                 "email" => "test@example.com",
+                "first_name" => "User",
+                "last_name" => "Name",
               }
             )
           end
@@ -94,6 +98,8 @@ module Api
               "user" => {
                 "id" => user.id,
                 "email" => "test@example.com",
+                "first_name" => "User",
+                "last_name" => "Name",
               }
             )
           end

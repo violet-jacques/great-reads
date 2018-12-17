@@ -44,6 +44,8 @@ module Api
         @user ||= User.new(
           email: user_params[:email],
           password: user_params[:password],
+          first_name: user_params[:first_name],
+          last_name: user_params[:last_name],
         )
       end
 
@@ -53,6 +55,8 @@ module Api
 
       def user_params
         params.require(:user).permit(
+          :first_name,
+          :last_name,
           :email,
           :password,
           :password_confirmation,
