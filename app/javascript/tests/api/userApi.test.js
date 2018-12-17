@@ -31,6 +31,8 @@ describe("userApi", () => {
       email: "test@example.com",
       password: "password!",
       password_confirmation: "password!",
+      first_name: "sup",
+      last_name: "dawg",
     };
     let fetchCall;
 
