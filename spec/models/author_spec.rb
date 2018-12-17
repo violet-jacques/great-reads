@@ -8,4 +8,9 @@ RSpec.describe Author, type: :model do
     it { should validate_presence_of(:birth_place) }
     it { should validate_presence_of(:description) }
   end
+
+  describe "associations" do
+    it { should have_many(:author_books) }
+    it { should have_many(:books).through(:author_books) }
+  end
 end
