@@ -8,5 +8,7 @@ RSpec.describe Book, type: :model do
 
   describe "associations" do
     it { should have_many(:variants) }
+    it { should have_many(:genre_categorizations) }
+    it { should have_many(:genres).through(:genre_categorizations) }
   end
 end
