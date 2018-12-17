@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181217002136) do
+ActiveRecord::Schema.define(version: 20181217002910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 20181217002136) do
     t.string "name"
     t.string "description"
     t.index ["name"], name: "index_genres_on_name", unique: true
+  end
+
+  create_table "influences", force: :cascade do |t|
+    t.bigint "influencer_id", null: false
+    t.bigint "influencee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["influencee_id"], name: "index_influences_on_influencee_id"
+    t.index ["influencer_id", "influencee_id"], name: "index_influences_on_influencer_id_and_influencee_id"
+    t.index ["influencer_id"], name: "index_influences_on_influencer_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -12,5 +12,37 @@ RSpec.describe Author, type: :model do
   describe "associations" do
     it { should have_many(:author_books) }
     it { should have_many(:books).through(:author_books) }
+    it do
+      should have_many(
+        :influencee_influences
+        ).with_foreign_key(
+          "influencer_id"
+        ).class_name("Influence")
+    end
+    it do
+      should have_many(
+        :influencer_influences
+        ).with_foreign_key(
+          "influencee_id"
+        ).class_name("Influence")
+    end
+    it do
+      should have_many(
+        :influences
+      ).through(
+        :influencer_influences
+      ).source(
+        :influencer
+      )
+    end
+    it do
+      should have_many(
+        :influencees
+      ).through(
+        :influencee_influences
+      ).source(
+        :influencee
+      )
+    end
   end
 end
