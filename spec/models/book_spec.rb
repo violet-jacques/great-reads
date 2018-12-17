@@ -10,5 +10,7 @@ RSpec.describe Book, type: :model do
     it { should have_many(:variants) }
     it { should have_many(:genre_categorizations) }
     it { should have_many(:genres).through(:genre_categorizations) }
+    it { should have_many(:author_books) }
+    it { should have_many(:authors).through(:author_books) }
   end
 end
