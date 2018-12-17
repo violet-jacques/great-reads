@@ -8,9 +8,13 @@ module Api
         let(:email) { "test@example.com" }
         let(:password) { "password" }
         let(:password_confirmation) { "password" }
+        let(:first_name) { "Sup" }
+        let(:last_name) { "Dawg" }
         let(:params) do
           {
             user: {
+              first_name: first_name,
+              last_name: last_name,
               email: email,
               password: password,
               password_confirmation: password_confirmation,
@@ -67,6 +71,8 @@ module Api
               "user" => {
                 "id" => User.last.id,
                 "email" => "test@example.com",
+                "first_name" => "Sup",
+                "last_name" => "Dawg",
               }
             )
           end
