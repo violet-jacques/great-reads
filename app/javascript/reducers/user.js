@@ -20,13 +20,15 @@ export default (
         loginErrorMessage: payload,
       };
     case LOGIN_SUCCESS: {
-      const { email, id } = payload;
+      const { email, first_name, id, last_name } = payload;
 
       return {
         ...state,
         email,
+        firstName: first_name,
         id,
         isLoggedIn: true,
+        lastName: last_name,
       };
     }
     case SIGN_UP_FAILURE:
@@ -35,13 +37,15 @@ export default (
         signUpErrorMessage: payload,
       };
     case SIGN_UP_SUCCESS: {
-      const { email, id } = payload;
+      const { email, first_name, id, last_name } = payload;
 
       return {
         ...state,
         email,
+        firstName: first_name,
         id,
         isLoggedIn: true,
+        lastName: last_name,
       };
     }
     default:
