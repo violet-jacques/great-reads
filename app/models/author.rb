@@ -7,4 +7,10 @@ class Author < ApplicationRecord
 
   has_many :author_books
   has_many :books, through: :author_books
+
+  has_many :influencer_influences, foreign_key: :influencee_id, class_name: "Influence"
+  has_many :influences, through: :influencer_influences, source: :influencer
+
+  has_many :influencee_influences, foreign_key: :influencer_id, class_name: "Influence"
+  has_many :influencees, through: :influencee_influences, source: :influencee
 end
