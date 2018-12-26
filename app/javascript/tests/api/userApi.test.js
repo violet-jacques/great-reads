@@ -1,8 +1,10 @@
+import { Map } from "immutable";
+
 import userApi from "../../api/userApi";
 
 describe("userApi", () => {
   describe("signIn", () => {
-    const form = { email: "test@example.com", password: "password!" };
+    const form = Map({ email: "test@example.com", password: "password!" });
     let fetchCall;
 
     beforeEach(() => {
@@ -27,13 +29,13 @@ describe("userApi", () => {
   });
 
   describe("signUp", () => {
-    const form = {
+    const form = Map({
       email: "test@example.com",
       password: "password!",
       password_confirmation: "password!",
       first_name: "sup",
       last_name: "dawg",
-    };
+    });
     let fetchCall;
 
     beforeEach(() => {

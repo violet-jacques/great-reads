@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
@@ -16,10 +17,10 @@ describe("mapDispatchToProps", () => {
     it("returns the expected action", () => {
       const expectedAction = {
         type: "TOGGLE_HEADER_DROPDOWN",
-        payload: {
+        payload: Map({
           navItem: "community",
           value: true,
-        },
+        }),
       };
       showDropdown();
 
@@ -33,10 +34,10 @@ describe("mapDispatchToProps", () => {
     it("returns the expected action", () => {
       const firstExpectedAction = {
         type: "TOGGLE_HEADER_DROPDOWN",
-        payload: {
+        payload: Map({
           navItem: "community",
           value: false,
-        },
+        }),
       };
       const secondexpectedAction = {
         type: "SET_ACTIVE_NAV_ITEM",

@@ -9,7 +9,7 @@ export default ({
 }) => {
   const renderAccountTab = () => {
     if (isLoggedIn) {
-      return <Link to="/account">Account</Link>;
+      return <Link className="header--nav-item-link" to="/account">Account</Link>;
     } else {
       return <a>Account</a>;
     }

@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import React from "react";
 import testHelpers from "../../helpers";
 import Modal from "../../../components/modal";
@@ -6,14 +7,13 @@ import SignUp from "../../../components/signUp";
 
 describe("Modal", () => {
   let wrapper;
-  const state = {
-    modal: {
+  const state = Map({
+    modal: Map({
       open: true,
       type: "",
-    },
-    user: {
-    }
-  };
+    }),
+    user: Map(),
+  });
 
   beforeEach(() => {
     wrapper = testHelpers.mountWithRouter(<Modal />, state);
@@ -79,13 +79,7 @@ describe("Modal", () => {
     });
 
     describe("when modal type is signIn", () => {
-      const newState = {
-        ...state,
-        modal: {
-          ...state.modal,
-          type: "signIn",
-        }
-      };
+      const newState = state.setIn(["modal", "type"], "signIn");
 
       beforeEach(() => {
         wrapper = testHelpers.mountWithRouter(<Modal />, newState);
@@ -97,13 +91,8 @@ describe("Modal", () => {
     });
 
     describe("when modal type is signUp", () => {
-      const newState = {
-        ...state,
-        modal: {
-          ...state.modal,
-          type: "signUp",
-        }
-      };
+      const newState = state.setIn(["modal", "type"], "signUp");
+
 
       beforeEach(() => {
         wrapper = testHelpers.mountWithRouter(<Modal />, newState);

@@ -1,14 +1,16 @@
+import { Map } from "immutable";
+
 import mapStateToProps from "../../../components/header/mapStateToProps";
 
 describe("mapStateToProps", () => {
-  const state = {
-    header: {
+  const state = Map({
+    header: Map({
       activeNavItem: "Hey",
-    },
-    user: {
+    }),
+    user: Map({
       isLoggedIn: true,
-    }
-  };
+    }),
+  });
 
   const props = mapStateToProps(state);
 

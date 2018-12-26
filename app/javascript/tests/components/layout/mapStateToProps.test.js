@@ -1,11 +1,13 @@
+import { Map } from "immutable";
+
 import mapStateToProps from "../../../components/layout/mapStateToProps";
 
 describe("mapStateToProps", () => {
-  const state = {
-    modal: {
+  const state = Map({
+    modal: Map({
       open: true,
-    }
-  };
+    }),
+  });
 
   const props = mapStateToProps(state);
 

@@ -1,12 +1,6 @@
-export default ({
-  header: {
-    activeNavItem,
-    dropdowns: { browse },
-  },
-
-}) => {
+export default state => {
   return {
-    activeNavItem,
-    dropdownOpen: browse,
+    activeNavItem: state.getIn(["header", "activeNavItem"]),
+    dropdownOpen: state.getIn(["header", "dropdowns", "browse"]),
   };
 };

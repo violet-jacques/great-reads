@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,18 +7,18 @@ import testHelpers from "../../../helpers";
 
 describe("Account", () => {
   let wrapper;
-  const state = {
-    user: {
+  const state = Map({
+    user: Map({
       isLoggedIn: false,
-    },
-    header: {
+    }),
+    header: Map({
       activeNavItem: "",
-      dropdowns: {
+      dropdowns: Map({
         browse: false,
         community: false,
-      }
-    }
-  };
+      }),
+    }),
+  });
 
   const props = {
     activeDetermination: jest.fn(),
@@ -33,12 +34,7 @@ describe("Account", () => {
 
   describe("account link", () => {
     describe("when the user is logged in", () => {
-      const newState = {
-        ...state,
-        user: {
-          isLoggedIn: true,
-        },
-      };
+      const newState = state.setIn(["user", "isLoggedIn"], true);
 
       beforeEach(() => {
         wrapper = testHelpers.mountWithRouter(<Account {...props} />, newState);

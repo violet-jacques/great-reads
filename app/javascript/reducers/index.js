@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "redux-immutable";
 import { reducer as formReducer } from "redux-form";
 
 import header from "./header";

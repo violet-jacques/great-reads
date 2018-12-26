@@ -20,14 +20,3 @@ describe("mountWithStore", () => {
     expect(wrapper.find(Provider)).toHaveLength(1);
   });
 });
-
-describe("removeObjectFromArray", () => {
-  it("returns array without passed in object", () => {
-    const obj = { foo: "bar" };
-    const obj2 = { bah: "baz" };
-    const array = [obj, obj2];
-    const expectedArray = [obj];
-
-    expect(helpers.removeObjectFromArray(array, obj2)).toEqual(expectedArray);
-  });
-});
