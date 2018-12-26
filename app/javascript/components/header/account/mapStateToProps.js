@@ -1,7 +1,1 @@
-export default ({
-  user: { isLoggedIn },
-}) => {
-  return {
-    isLoggedIn,
-  };
-};
+export default state => ({ isLoggedIn: state.getIn(["user", "isLoggedIn"]) });

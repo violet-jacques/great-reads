@@ -25,13 +25,7 @@ const mountWithRouter = (component, state = {}) => {
   return mountWithStore(wrappedComponent, state);
 };
 
-const removeObjectFromArray = (
-  arr,
-  obj,
-) => arr.filter(objectInArray => objectInArray !== obj);
-
 export default {
   mount: mountWithStore,
   mountWithRouter,
-  removeObjectFromArray,
 };

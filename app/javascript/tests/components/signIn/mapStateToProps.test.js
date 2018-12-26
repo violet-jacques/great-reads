@@ -1,11 +1,15 @@
+import { Map } from "immutable";
+
 import mapStateToProps from "../../../components/signIn/mapStateToProps";
 
 describe("mapStateToProps", () => {
-  const state = {
-    user: {
-      loginErrorMessage: "Hey",
-    },
-  };
+  const state = Map({
+    user: Map({
+      errors: Map({
+        loginErrorMessage: "Hey",
+      })
+    }),
+  });
 
   const props = mapStateToProps(state);
 

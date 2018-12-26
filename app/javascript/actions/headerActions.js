@@ -1,3 +1,5 @@
+import { Map } from "immutable";
+
 import genericAction from "./genericAction";
 import { SET_ACTIVE_NAV_ITEM, TOGGLE_HEADER_DROPDOWN } from "../actionTypes";
 
@@ -12,7 +14,7 @@ export default {
   toggleHeaderDropdown: (navItem, value) => {
     return genericAction(
       TOGGLE_HEADER_DROPDOWN,
-      { navItem, value }
+      Map({ navItem, value }),
     );
-  }
+  },
 };

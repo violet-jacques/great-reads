@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import React from "react";
 import testHelpers from "../../helpers";
 import Footer from "../../../components/layout/footer";
@@ -7,21 +8,21 @@ import Modal from "../../../components/modal";
 
 describe("Layout", () => {
   let wrapper;
-  const state = {
-    user: {
+  const state = Map({
+    user: Map({
       isLoggedIn: false,
-    },
-    header: {
+    }),
+    header: Map({
       activeNavItem: "",
-      dropdowns: {
+      dropdowns: Map({
         browse: false,
         community: false,
-      }
-    },
-    modal: {
+      }),
+    }),
+    modal: Map({
       open: false,
-    },
-  };
+    }),
+  });
 
   beforeEach(() => {
     wrapper = testHelpers.mountWithRouter(<Layout />, state);
@@ -55,12 +56,7 @@ describe("Layout", () => {
   });
 
   describe("when the modalOpen prop is true", () => {
-    const newState = {
-      ...state,
-      modal: {
-        open: true,
-      }
-    };
+    const newState = state.setIn(["modal", "open"], true);
 
     beforeEach(() => {
       wrapper = testHelpers.mountWithRouter(<Layout />, newState);
