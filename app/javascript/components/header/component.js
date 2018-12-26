@@ -23,13 +23,13 @@ export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
         className={activeDetermination("home")}
         onClick={setActiveNavItem("home")}
       >
-        <Link to="/">Home</Link>
+        <Link className="header--nav-item-link" to="/">Home</Link>
       </li>
       <li
         className={activeDetermination("my-books")}
         onClick={setActiveNavItem("my-books")}
       >
-        <Link to="/my-books">My Books</Link>
+        <Link className="header--nav-item-link" to="/my-books">My Books</Link>
       </li>
       <Browse
         activeDetermination={activeDetermination}
@@ -41,7 +41,7 @@ export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
         className={activeDetermination("search")}
         onClick={setActiveNavItem("search")}
       >
-        <Link to="/search">Search</Link>
+        <Link className="header--nav-item-link" to="/search">Search</Link>
       </li>
       <li
         className={activeDetermination("notifications")}

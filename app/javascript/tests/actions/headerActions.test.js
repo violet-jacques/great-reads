@@ -1,3 +1,5 @@
+import { Map } from "immutable";
+
 import headerActions from "../../actions/headerActions";
 import { SET_ACTIVE_NAV_ITEM, TOGGLE_HEADER_DROPDOWN } from "../../actionTypes";
 
@@ -22,10 +24,10 @@ describe("headerActions", () => {
     it("returns an object with a type and payload key value pair", () => {
       expect(toggleHeaderDropdown(navItem, value)).toEqual({
         type: TOGGLE_HEADER_DROPDOWN,
-        payload: {
+        payload: Map({
           navItem,
           value,
-        },
+        }),
       });
     });
   });

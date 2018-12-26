@@ -1,7 +1,5 @@
 export default state => {
-  const { user: { signUpErrorMessage } } = state;
-
   return {
-    signUpErrorMessage,
+    signUpErrorMessage: state.getIn(["user", "errors", "signUpErrorMessage"]),
   };
 };

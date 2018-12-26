@@ -1,3 +1,5 @@
+import { fromJS, Map } from "immutable";
+
 const request = (form, path) => {
   return (
     global.fetch(
@@ -9,7 +11,8 @@ const request = (form, path) => {
         },
         body: JSON.stringify({ user: form }),
       },
-    ).then(response => response.json())
+    ).then(jsonResponse => jsonResponse.json())
+      .then(response => Promise.resolve(fromJS(response)))
   );
 };
 

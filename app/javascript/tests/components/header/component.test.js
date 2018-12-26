@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,18 +7,18 @@ import testHelpers from "../../helpers";
 
 describe("Header", () => {
   let wrapper;
-  const state = {
-    user: {
+  const state = Map({
+    user: Map({
       isLoggedIn: false,
-    },
-    header: {
+    }),
+    header: Map({
       activeNavItem: "",
-      dropdowns: {
+      dropdowns: Map({
         browse: false,
         community: false,
-      }
-    }
-  };
+      }),
+    }),
+  });
 
   beforeEach(() => {
     wrapper = testHelpers.mountWithRouter(<Header />, state);
@@ -28,13 +29,8 @@ describe("Header", () => {
   });
 
   describe("activeNavItem", () => {
-    const newState = {
-      ...state,
-      header: {
-        ...state.header,
-        activeNavItem: "home"
-      }
-    };
+    const newState = state.setIn(["header", "activeNavItem"], "home");
+
     beforeEach(() => {
       wrapper = testHelpers.mountWithRouter(<Header />, newState);
     });
@@ -52,16 +48,8 @@ describe("Header", () => {
     });
 
     describe("when a dropdown is true", () => {
-      const newState = {
-        ...state,
-        header: {
-          ...state.header,
-          dropdowns: {
-            ...state.header.dropdowns,
-            browse: true,
-          }
-        }
-      };
+      const newState = state.setIn(["header", "dropdowns", "browse"], true);
+
       beforeEach(() => {
         wrapper = testHelpers.mountWithRouter(<Header />, newState);
       });
@@ -74,12 +62,7 @@ describe("Header", () => {
 
   describe("account link", () => {
     describe("when the user is logged in", () => {
-      const newState = {
-        ...state,
-        user: {
-          isLoggedIn: true,
-        },
-      };
+      const newState = state.setIn(["user", "isLoggedIn"], true);
 
       beforeEach(() => {
         wrapper = testHelpers.mountWithRouter(<Header />, newState);

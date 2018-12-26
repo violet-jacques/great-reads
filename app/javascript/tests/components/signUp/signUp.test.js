@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import React from "react";
 import testHelpers from "../../helpers";
 import SignUp from "../../../components/signUp";
@@ -7,9 +8,9 @@ describe("SignUp", () => {
   let wrapper;
 
   beforeEach(() => {
-    const state = {
-      user: {},
-    };
+    const state = Map({
+      user: Map(),
+    });
 
     wrapper = testHelpers.mountWithRouter(<SignUp />, state);
   });
@@ -30,11 +31,13 @@ describe("SignUp", () => {
   describe("sign up error message present", () => {
     let newWrapper;
     beforeEach(() => {
-      const state = {
-        user: {
-          signUpErrorMessage: "Sup dog",
-        },
-      };
+      const state = Map({
+        user: Map({
+          errors: Map({
+            signUpErrorMessage: "Sup dog",
+          }),
+        }),
+      });
 
       newWrapper = testHelpers.mountWithRouter(<SignUp />, state);
     });

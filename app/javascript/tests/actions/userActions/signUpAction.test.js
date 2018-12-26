@@ -1,5 +1,6 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
+import { Map } from "immutable";
 
 import signUpAction from "../../../actions/userActions/signUpAction";
 
@@ -26,7 +27,7 @@ describe("signUpAction", () => {
 
       const expectedAction = {
         type: "SIGN_UP_SUCCESS",
-        payload: { id: 1, email: "hey" },
+        payload: Map({ id: 1, email: "hey" }),
       };
       const secondExpectedAction = {
         type: "HIDE_MODAL",

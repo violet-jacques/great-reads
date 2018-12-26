@@ -1,5 +1,1 @@
-export default ({ modal: { open } }) => {
-  return {
-    modalOpen: open,
-  };
-};
+export default state => ({ modalOpen: state.getIn(["modal", "open"]) });

@@ -1,20 +1,20 @@
+import { List } from "immutable";
+
 import home from "../../../routes/routeConfig/home";
-import routeConfig from "../../../routes/routeConfig";
-import testHelpers from "../../helpers";
+import routes from "../../../routes/routeConfig";
 
 describe("routeConfig", () => {
-  let clonedRouteConfig = Object.assign([], routeConfig);
+  let clonedRoutes = List(routes);
 
   it("contains rootRouteConfig", () => {
-    expect(clonedRouteConfig).toContain(home);
+    expect(clonedRoutes).toContain(home);
 
-    clonedRouteConfig = testHelpers.removeObjectFromArray(
-      clonedRouteConfig,
-      home,
-    );
+    const index = clonedRoutes.indexOf(home);
+
+    clonedRoutes = clonedRoutes.delete(index);
   });
 
   it("contains nothing else", () => {
-    expect(clonedRouteConfig).toEqual([]);
+    expect(clonedRoutes.equals(List())).toBe(true);
   });
 });

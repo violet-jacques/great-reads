@@ -1,3 +1,5 @@
+import { Map } from "immutable";
+
 import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
@@ -5,9 +7,17 @@ import {
   SIGN_UP_SUCCESS,
 } from "../actionTypes";
 
-const initialState = {
+const initialState = Map({
+  email: "",
+  firstName: "",
+  id: "",
   isLoggedIn: false,
-};
+  lastName: "",
+  errors: Map({
+    loginErrorMessage: "",
+    signUpErrorMessage: "",
+  }),
+});
 
 export default (
   state = initialState,
@@ -15,39 +25,16 @@ export default (
 ) => {
   switch (type) {
     case LOGIN_FAILURE:
-      return {
-        ...state,
-        loginErrorMessage: payload,
-      };
-    case LOGIN_SUCCESS: {
-      const { email, first_name, id, last_name } = payload;
-
-      return {
-        ...state,
-        email,
-        firstName: first_name,
-        id,
-        isLoggedIn: true,
-        lastName: last_name,
-      };
-    }
+      return state.setIn(["errors", "loginErrorMessage"], payload);
+    case SIGN_UP_SUCCESS:
+    case LOGIN_SUCCESS:
+      return state.set("email", payload.get("email"))
+        .set("id", payload.get("id"))
+        .set("firstName", payload.get("first_name"))
+        .set("isLoggedIn", true)
+        .set("lastName", payload.get("last_name"));
     case SIGN_UP_FAILURE:
-      return {
-        ...state,
-        signUpErrorMessage: payload,
-      };
-    case SIGN_UP_SUCCESS: {
-      const { email, first_name, id, last_name } = payload;
-
-      return {
-        ...state,
-        email,
-        firstName: first_name,
-        id,
-        isLoggedIn: true,
-        lastName: last_name,
-      };
-    }
+    return state.setIn(["errors", "signUpErrorMessage"], payload);
     default:
       return state;
   }

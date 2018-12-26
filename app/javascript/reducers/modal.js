@@ -1,10 +1,12 @@
+import { Map } from "immutable";
+
 import { SHOW_MODAL, HIDE_MODAL, SET_MODAL_TYPE } from "../actionTypes";
 
 
-const initialState = {
+const initialState = Map({
   open: false,
   type: "",
-};
+});
 
 export default (
   state = initialState,
@@ -12,20 +14,11 @@ export default (
 ) => {
   switch (type) {
     case HIDE_MODAL:
-      return {
-        ...state,
-        open: false,
-      };
+    return state.set("open", false);
     case SHOW_MODAL:
-      return {
-        ...state,
-        open: true,
-      };
+      return state.set("open", true);
     case SET_MODAL_TYPE:
-      return {
-        ...state,
-        type: payload,
-      };
+      return state.set("type", payload);
     default:
       return state;
   }
