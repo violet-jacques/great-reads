@@ -1,1 +1,1 @@
-export default ({ modal: { type } }) => ({ type });
+export default state => ({ type: state.getIn(["modal", "type"]) });

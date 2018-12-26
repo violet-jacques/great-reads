@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 import React from "react";
 
 import Browse from "../../../../components/header/browse";
@@ -7,18 +8,18 @@ import testHelpers from "../../../helpers";
 describe("Browse", () => {
   let wrapper;
   const { setActiveNavItem, toggleHeaderDropdown } = headerActions;
-  const state = {
-    user: {
+  const state = Map({
+    user: Map({
       isLoggedIn: false,
-    },
-    header: {
+    }),
+    header: Map({
       activeNavItem: "",
-      dropdowns: {
+      dropdowns: Map({
         browse: false,
         community: false,
-      }
-    }
-  };
+      }),
+    }),
+  });
   const props = {
     activeDetermination: jest.fn(),
   };
@@ -33,18 +34,9 @@ describe("Browse", () => {
 
   describe("dropdown", () => {
     let wrapper;
-    const newState = {
-      user: {
-        isLoggedIn: false,
-      },
-      header: {
-        activeNavItem: "",
-        dropdowns: {
-          browse: true,
-          community: false,
-        }
-      }
-    };
+    const newState = state.setIn(["user", "isLoggedIn"], false)
+      .setIn(["header", "dropdowns", "browse"], true);
+
     beforeEach(() => {
       wrapper = testHelpers.mount(<Browse {...props} />, newState);
     });
@@ -65,10 +57,10 @@ describe("Browse", () => {
           };
           const secondExpectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
-            payload: {
+            payload: Map({
               navItem: "browse",
               value: true,
-            }
+            }),
           };
 
           expect(wrapper.props().store.getActions()).toContainEqual(firstExpectedAction);
@@ -78,18 +70,8 @@ describe("Browse", () => {
 
       describe("when dropdown is open", () => {
         let wrapper;
-        const newState = {
-          user: {
-            isLoggedIn: false,
-          },
-          header: {
-            activeNavItem: "",
-            dropdowns: {
-              browse: true,
-              community: false,
-            }
-          }
-        };
+        const newState = state.setIn(["user", "isLoggedIn"], false)
+          .setIn(["header", "dropdowns", "browse"], true);
 
         beforeEach(() => {
           wrapper = testHelpers.mount(<Browse {...props} />, newState);
@@ -103,10 +85,10 @@ describe("Browse", () => {
           };
           const secondExpectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
-            payload: {
+            payload: Map({
               navItem: "browse",
               value: false,
-            }
+            }),
           };
 
           expect(wrapper.props().store.getActions()).toContainEqual(firstExpectedAction);
@@ -117,18 +99,8 @@ describe("Browse", () => {
 
     describe("when activeNavItem is browse", () => {
       let wrapper;
-      const newState = {
-        user: {
-          isLoggedIn: false,
-        },
-        header: {
-          activeNavItem: "browse",
-          dropdowns: {
-            browse: false,
-            community: false,
-          }
-        }
-      };
+      const newState = state.setIn(["user", "isLoggedIn"], false)
+        .setIn(["header", "activeNavItem"], "browse");
 
       beforeEach(() => {
         wrapper = testHelpers.mount(<Browse {...props} />, newState);
@@ -142,10 +114,10 @@ describe("Browse", () => {
           };
           const secondExpectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
-            payload: {
+            payload: Map({
               navItem: "browse",
               value: true,
-            }
+            }),
           };
 
           expect(wrapper.props().store.getActions()).not.toContainEqual(firstExpectedAction);
@@ -155,18 +127,10 @@ describe("Browse", () => {
 
       describe("when dropdown is open", () => {
         let wrapper;
-        const newState = {
-          user: {
-            isLoggedIn: false,
-          },
-          header: {
-            activeNavItem: "browse",
-            dropdowns: {
-              browse: true,
-              community: false,
-            }
-          }
-        };
+        const newState = state.setIn(["user", "isLoggedIn"], false)
+          .setIn(["header", "activeNavItem"], "browse")
+          .setIn(["header", "dropdowns", "browse"], true);
+
 
         beforeEach(() => {
           wrapper = testHelpers.mount(<Browse {...props} />, newState);
@@ -180,10 +144,10 @@ describe("Browse", () => {
           };
           const secondExpectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
-            payload: {
+            payload: Map({
               navItem: "browse",
               value: false,
-            }
+            }),
           };
 
           expect(wrapper.props().store.getActions()).not.toContainEqual(firstExpectedAction);

@@ -1,5 +1,6 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
+import { Map } from "immutable";
 
 import signInAction from "../../../actions/userActions/signInAction";
 
@@ -13,7 +14,7 @@ describe("signInAction", () => {
       global.fetch.resetMocks();
       global.fetch.mockResponse(JSON.stringify({
         success: true,
-        user: { id: 1, email: "hey" },
+        user: Map({ id: 1, email: "hey" }),
       }));
     });
 
@@ -21,7 +22,7 @@ describe("signInAction", () => {
       const form = { email: "hello@example.com", password: "password" };
       const expectedAction = {
         type: "LOGIN_SUCCESS",
-        payload: { id: 1, email: "hey" },
+        payload: Map({ id: 1, email: "hey" }),
       };
       const secondExpectedAction = {
         type: "HIDE_MODAL",

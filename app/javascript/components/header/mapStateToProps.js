@@ -1,9 +1,6 @@
-export default ({
-  header: { activeNavItem },
-  user: { isLoggedIn },
-}) => {
+export default state => {
   return {
-    activeNavItem,
-    isLoggedIn,
+    activeNavItem: state.getIn(["header", "activeNavItem"]),
+    isLoggedIn: state.getIn(["user", "isLoggedIn"]),
   };
 };

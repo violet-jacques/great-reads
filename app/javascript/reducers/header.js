@@ -1,13 +1,15 @@
+import { Map } from "immutable";
+
 import { SET_ACTIVE_NAV_ITEM, TOGGLE_HEADER_DROPDOWN } from "../actionTypes";
 
 
-const initialState = {
+const initialState = Map({
   activeNavItem: "",
-  dropdowns: {
+  dropdowns: Map({
     browse: false,
     community: false,
-  },
-};
+  }),
+});
 
 export default (
   state = initialState,
@@ -15,18 +17,12 @@ export default (
 ) => {
   switch (type) {
     case SET_ACTIVE_NAV_ITEM:
-      return {
-        ...state,
-        activeNavItem: payload
-      };
+    return state.set("activeNavItem", payload);
     case TOGGLE_HEADER_DROPDOWN:
-      return {
-        ...state,
-        dropdowns: {
-          ...state.dropdowns,
-          [payload.navItem]: payload.value,
-        }
-      };
+      return state.setIn(
+        ["dropdowns", payload.get("navItem")],
+        payload.get("value"),
+      );
     default:
       return state;
     }
