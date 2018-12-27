@@ -29,6 +29,8 @@ module Api
           }
         end,
         variant_count: book.variants.count,
+        average_rating: book.average_rating,
+        rating_count: book.rating_count,
       }
     end
   end
