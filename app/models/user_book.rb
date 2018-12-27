@@ -1,7 +1,7 @@
 class UserBook < ApplicationRecord
   validates :book_id, presence: true
   validates :user_id, presence: true
-  validates :favorite, presence: true
+  validates :favorite, inclusion: { in: [true, false] }
   validates :group, presence: true
 
   enum group: {
