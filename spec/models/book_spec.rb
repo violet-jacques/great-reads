@@ -81,4 +81,48 @@ RSpec.describe Book, type: :model do
       end
     end
   end
+
+  describe "#average_rating" do
+    let(:users) { create_list(:user, 10) }
+    let(:book) { create(:book) }
+    let!(:some_ratings) do
+      users.first(5).map do |user|
+        create(:user_book, rating: 2, book: book, user: user)
+      end
+    end
+    let!(:some_more_ratings) do
+      users.first(5).map do |user|
+        create(:user_book, rating: 5, book: book, user: user)
+      end
+    end
+
+    it "returns the average rating" do
+      expect(book.average_rating).to eq(3.5)
+    end
+  end
+
+  describe "#rating_count" do
+    let(:users) { create_list(:user, 10) }
+    let(:book) { create(:book) }
+    let!(:some_ratings) do
+      users.first(5).map do |user|
+        create(:user_book, rating: 2, book: book, user: user)
+      end
+    end
+    let!(:some_more_ratings) do
+      users.first(5).map do |user|
+        create(:user_book, rating: 5, book: book, user: user)
+      end
+    end
+
+    let!(:non_ratings) do
+      create_list(:user, 3).map do |user|
+          create(:user_book, rating: nil, book: book, user: user)
+      end
+    end
+
+    it "returns the count of user_books with ratings" do
+      expect(book.rating_count).to eq(10)
+    end
+  end
 end
