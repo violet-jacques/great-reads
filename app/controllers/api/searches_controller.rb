@@ -8,7 +8,7 @@ module Api
 
     def books
       Book
-        .includes(:variants, :authors)
+        .includes(:authors)
         .book_search(search_params[:query])
         .map { |book| to_h(book) }
     end
