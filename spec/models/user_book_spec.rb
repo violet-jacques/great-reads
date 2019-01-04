@@ -4,7 +4,6 @@ RSpec.describe UserBook, type: :model do
   describe "validations" do
     it { should validate_presence_of(:book_id) }
     it { should validate_presence_of(:user_id) }
-    it { should validate_inclusion_of(:favorite).in_array([true, false]) }
     it { should validate_presence_of(:group) }
     it do
       should define_enum_for(:group).with({

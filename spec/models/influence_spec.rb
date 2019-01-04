@@ -7,7 +7,7 @@ RSpec.describe Influence, type: :model do
   end
 
   describe "associations" do
-    it { should belong_to(:influencer).class_name("Author") }
-    it { should belong_to(:influencee).class_name("Author") }
+    it { should belong_to(:influencer).class_name("Contributor") }
+    it { should belong_to(:influencee).class_name("Contributor") }
   end
 end
