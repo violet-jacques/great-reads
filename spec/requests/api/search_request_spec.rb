@@ -22,18 +22,26 @@ module Api
       let!(:matching_genre_categorization) do
         create(:genre_categorization, book: matching_book, genre: matching_genre)
       end
-      let(:matching_author) { create(:author) }
-      let!(:matching_author_book) do
-        create(:author_book, book: matching_book, author: matching_author)
+      let(:matching_contributor) { create(:contributor) }
+      let!(:matching_contribution) do
+        create(
+          :contribution,
+          contributable: matching_book,
+          contributor: matching_contributor,
+        )
       end
       let(:non_matching_book) { create(:book, title: "Cat") }
       let(:non_matching_genre) { create(:genre, name: "Horror") }
       let!(:non_matching_genre_categorization) do
         create(:genre_categorization, book: matching_book, genre: non_matching_genre)
       end
-      let(:non_matching_author) { create(:author, first_name: "John", last_name: "Smith") }
-      let!(:non_matching_author_book) do
-        create(:author_book, book: non_matching_book, author: non_matching_author)
+      let(:non_matching_contributor) { create(:contributor, first_name: "John", last_name: "Smith") }
+      let!(:non_matching_contribution) do
+        create(
+          :contribution,
+          contributable: non_matching_book,
+          contributor: non_matching_contributor,
+        )
       end
       let(:users) { create_list(:user, 10) }
       let!(:some_ratings) do
@@ -60,8 +68,8 @@ module Api
             "books" => [
               {
                 "title" => "Dog",
-                "authors" => [
-                  { "first_name" => "Jane", "last_name" => "Author" },
+                "contributors" => [
+                  { "first_name" => "Jane", "last_name" => "Contributor" },
                 ],
                 "variant_count" => 2,
                 "average_rating" => 3.5,
@@ -85,8 +93,8 @@ module Api
             "books" => [
               {
                 "title" => "Dog",
-                "authors" => [
-                  { "first_name" => "Jane", "last_name" => "Author" },
+                "contributors" => [
+                  { "first_name" => "Jane", "last_name" => "Contributor" },
                 ],
                 "variant_count" => 2,
                 "average_rating" => 3.5,
@@ -98,9 +106,9 @@ module Api
       end
 
       context "searching by author last_name" do
-        let(:query) { "Author" }
+        let(:query) { "Contributor" }
 
-        it "returns books matching that author first name" do
+        it "returns books matching that contributor last name" do
           get api_searches_path, :params => params
 
           response = JSON.parse(body)
@@ -110,8 +118,8 @@ module Api
             "books" => [
               {
                 "title" => "Dog",
-                "authors" => [
-                  { "first_name" => "Jane", "last_name" => "Author" },
+                "contributors" => [
+                  { "first_name" => "Jane", "last_name" => "Contributor" },
                 ],
                 "variant_count" => 2,
                 "average_rating" => 3.5,
@@ -122,7 +130,7 @@ module Api
         end
       end
 
-      context "searching by author last_name" do
+      context "searching by genre" do
         let(:query) { "Fiction" }
 
         it "returns books matching that author first name" do
@@ -135,8 +143,8 @@ module Api
             "books" => [
               {
                 "title" => "Dog",
-                "authors" => [
-                  { "first_name" => "Jane", "last_name" => "Author" },
+                "contributors" => [
+                  { "first_name" => "Jane", "last_name" => "Contributor" },
                 ],
                 "variant_count" => 2,
                 "average_rating" => 3.5,
