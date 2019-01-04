@@ -10,22 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181217020232) do
+ActiveRecord::Schema.define(version: 20190104021626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "author_books", force: :cascade do |t|
-    t.bigint "author_id", null: false
-    t.bigint "book_id", null: false
+  create_table "books", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_author_books_on_author_id"
-    t.index ["book_id", "author_id"], name: "index_author_books_on_book_id_and_author_id"
-    t.index ["book_id"], name: "index_author_books_on_book_id"
   end
 
-  create_table "authors", force: :cascade do |t|
+  create_table "contributions", force: :cascade do |t|
+    t.integer "contribution_type", null: false
+    t.integer "contributable_id", null: false
+    t.string "contributable_type", null: false
+    t.bigint "contributor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contributable_type", "contributable_id"], name: "index_contributions_on_contributable_type_and_contributable_id"
+    t.index ["contributable_type"], name: "index_contributions_on_contributable_type"
+    t.index ["contribution_type"], name: "index_contributions_on_contribution_type"
+    t.index ["contributor_id"], name: "index_contributions_on_contributor_id"
+  end
+
+  create_table "contributors", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.date "born_at", null: false
@@ -34,17 +44,10 @@ ActiveRecord::Schema.define(version: 20181217020232) do
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["born_at"], name: "index_authors_on_born_at"
-    t.index ["died_at"], name: "index_authors_on_died_at"
-    t.index ["first_name"], name: "index_authors_on_first_name"
-    t.index ["last_name"], name: "index_authors_on_last_name"
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "description", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["born_at"], name: "index_contributors_on_born_at"
+    t.index ["died_at"], name: "index_contributors_on_died_at"
+    t.index ["first_name"], name: "index_contributors_on_first_name"
+    t.index ["last_name"], name: "index_contributors_on_last_name"
   end
 
   create_table "genre_categorizations", force: :cascade do |t|

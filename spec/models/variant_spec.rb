@@ -19,5 +19,7 @@ RSpec.describe Variant, type: :model do
 
   describe "associations" do
     it { should belong_to(:book) }
+    it { should have_many(:contributions) }
+    it { should have_many(:contributors).through(:contributions) }
   end
 end

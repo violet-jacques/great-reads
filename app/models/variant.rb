@@ -12,4 +12,7 @@ class Variant < ApplicationRecord
   }
 
   belongs_to :book
+
+  has_many :contributions, as: :contributable
+  has_many :contributors, through: :contributions
 end

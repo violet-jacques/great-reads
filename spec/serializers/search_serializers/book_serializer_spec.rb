@@ -10,9 +10,9 @@ module SearchSerializers
           variants: create_list(:variant, 2),
         )
       end
-      let(:author) { create(:author) }
-      let!(:author_book) do
-        create(:author_book, book: book, author: author)
+      let(:contributor) { create(:contributor) }
+      let!(:contribution) do
+        create(:contribution, contributable: book, contributor: contributor)
       end
       let(:users) { create_list(:user, 10) }
       let!(:some_ratings) do
@@ -32,8 +32,8 @@ module SearchSerializers
       it "serializes the book properly" do
         expect(serialized_book).to eq(
           title: "Dog",
-          authors: [
-            { first_name: "Jane", last_name: "Author" },
+          contributors: [
+            { first_name: "Jane", last_name: "Contributor" },
           ],
           variant_count: 2,
           average_rating: 3.5,
