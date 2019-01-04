@@ -11,7 +11,7 @@ module SearchSerializers
     def serialize
       {
         title: title,
-        authors: serialized_authors,
+        contributors: serialized_contributors,
         variant_count: variants.count,
         average_rating: average_rating,
         rating_count: rating_count,
@@ -22,16 +22,16 @@ module SearchSerializers
 
     attr_reader :book
     delegate :average_rating,
-      :authors,
+      :contributors,
       :rating_count,
       :title,
       :variants, to: :book
 
-    def serialized_authors
-      authors.map do |author|
+    def serialized_contributors
+      contributors.map do |contributor|
         {
-          first_name: author.first_name,
-          last_name: author.last_name,
+          first_name: contributor.first_name,
+          last_name: contributor.last_name,
         }
       end
     end
