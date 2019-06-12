@@ -12,7 +12,7 @@ RSpec.describe Contribution do
     it { should validate_presence_of(:contributor_id) }
     it { should validate_presence_of(:contribution_type) }
     it do
-      should define_enum_for(:contribution_type).with(
+      should define_enum_for(:contribution_type).with_values(
         author: 0,
         translator: 1,
         illustrator: 2,
