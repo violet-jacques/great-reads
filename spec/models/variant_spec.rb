@@ -11,7 +11,7 @@ RSpec.describe Variant, type: :model do
     it { should validate_presence_of(:published_by) }
     it { should validate_presence_of(:language) }
     it { should validate_presence_of(:format) }
-    it { should define_enum_for(:format).with({
+    it { should define_enum_for(:format).with_values({
       paperback: 0,
       hardcover: 1,
     }) }
