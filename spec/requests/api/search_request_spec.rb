@@ -20,7 +20,11 @@ module Api
       end
       let(:matching_genre) { create(:genre, name: "Fiction") }
       let!(:matching_genre_categorization) do
-        create(:genre_categorization, book: matching_book, genre: matching_genre)
+        create(
+          :genre_categorization,
+          book: matching_book,
+          genre: matching_genre,
+        )
       end
       let(:matching_contributor) { create(:contributor) }
       let!(:matching_contribution) do
@@ -33,9 +37,15 @@ module Api
       let(:non_matching_book) { create(:book, title: "Cat") }
       let(:non_matching_genre) { create(:genre, name: "Horror") }
       let!(:non_matching_genre_categorization) do
-        create(:genre_categorization, book: matching_book, genre: non_matching_genre)
+        create(
+          :genre_categorization,
+          book: matching_book,
+          genre: non_matching_genre,
+        )
       end
-      let(:non_matching_contributor) { create(:contributor, first_name: "John", last_name: "Smith") }
+      let(:non_matching_contributor) do
+        create(:contributor, first_name: "John", last_name: "Smith")
+      end
       let!(:non_matching_contribution) do
         create(
           :contribution,

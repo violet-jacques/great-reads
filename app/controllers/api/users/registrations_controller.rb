@@ -10,14 +10,12 @@ module Api
           render json: { error: EMAIL_ERROR }
         elsif !passwords_match?
           render json: { error: PASSWORD_INVALID }
-        else
-          if user.save
-            sign_in(user)
+        elsif user.save
+          sign_in(user)
 
-            render json: { success: true, user: user.to_h }
-          else
-            render json: { error: error_messages }
-          end
+          render json: { success: true, user: user.to_h }
+        else
+          render json: { error: error_messages }
         end
       end
 
@@ -30,8 +28,10 @@ module Api
       def error_messages
         user_errors
           .messages
-          .map { |(k,v)| "#{k} #{v.join(', ')}" }
-          .join(',')
+          .map do |(error, messages)|
+            "#{error} #{messages.join(', ')}"
+          end
+          .join(",")
       end
 
       def user_already_exists?

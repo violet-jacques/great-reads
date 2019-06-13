@@ -6,9 +6,9 @@ module Api
       PASSWORD_INVALID = "Password invalid".freeze
 
       def create
-        return render json: { success: true, user: current_user.to_h } if current_user
-
-        if !user
+        if current_user
+          render json: { success: true, user: current_user.to_h }
+        elsif !user
           render json: { error: EMAIL_ERROR }
         elsif !valid_password?
           render json: { error: PASSWORD_INVALID }

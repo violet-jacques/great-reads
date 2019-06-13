@@ -43,7 +43,8 @@ RSpec.describe "Sign up integration", type: :feature, js: true do
         sign_up!
 
         expect(page).to have_current_path("/")
-        expect(page).to have_content("password is too short (minimum is 6 characters)")
+        expect(page)
+          .to have_content("password is too short (minimum is 6 characters)")
       end
     end
 
