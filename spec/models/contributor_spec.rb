@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Contributor, type: :model do
   describe "validations" do
@@ -10,20 +10,28 @@ RSpec.describe Contributor, type: :model do
   end
 
   describe "associations" do
-    it { should have_many(:contributions) }
+    it { should have_many(:contributions).dependent(:destroy) }
     it do
       should have_many(
         :influencee_influences
-        ).with_foreign_key(
-          "influencer_id"
-        ).class_name("Influence")
+      ).with_foreign_key(
+        "influencer_id"
+      ).class_name(
+        "Influence",
+      ).inverse_of(
+        :influencer_influences,
+      ).dependent(:destroy)
     end
     it do
       should have_many(
         :influencer_influences
-        ).with_foreign_key(
-          "influencee_id"
-        ).class_name("Influence")
+      ).with_foreign_key(
+        "influencee_id"
+      ).class_name(
+        "Influence",
+      ).inverse_of(
+        :influencee_influences,
+      ).dependent(:destroy)
     end
     it do
       should have_many(

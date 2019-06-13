@@ -1,15 +1,15 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'Sign in integration', type: :feature, js: true do
+RSpec.describe "Sign in integration", type: :feature, js: true do
   describe "signing in" do
-    let(:email) { 'test@example.com' }
-    let(:password) { 'password' }
+    let(:email) { "test@example.com" }
+    let(:password) { "password" }
     let!(:user) do
       create(
         :user,
-        email: 'test@example.com',
-        password: 'password',
-        password_confirmation: 'password',
+        email: "test@example.com",
+        password: "password",
+        password_confirmation: "password",
       )
     end
     let(:sign_in!) { sign_in_action(email: email, password: password) }
@@ -18,7 +18,7 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
       it "signs the user in" do
         sign_in!
 
-        expect(page).to have_current_path('/')
+        expect(page).to have_current_path("/")
       end
     end
 
@@ -28,7 +28,6 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
 
         it "displays invalid email error message" do
           sign_in!
-
 
           expect(page).to have_content("Email not found")
         end
@@ -47,10 +46,10 @@ RSpec.describe 'Sign in integration', type: :feature, js: true do
   end
 
   def sign_in_action(email:, password:)
-    visit('/')
+    visit("/")
     find("a", text: "Account").click
-    fill_in('email', :with => email)
-    fill_in('password', :with => password)
+    fill_in("email", :with => email)
+    fill_in("password", :with => password)
     click_button("Submit")
   end
 end

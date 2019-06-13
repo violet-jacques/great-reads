@@ -1,6 +1,5 @@
 require "rails_helper"
 
-
 module Api
   module Users
     RSpec.describe SessionsController, :type => :request do
@@ -86,7 +85,8 @@ module Api
 
         context "valid params" do
           before do
-            allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(false)
+            allow_any_instance_of(ApplicationController)
+              .to receive(:current_user).and_return(false)
           end
 
           it "returns the user as a json response" do

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Book, type: :model do
   describe "validations" do
@@ -7,12 +7,12 @@ RSpec.describe Book, type: :model do
   end
 
   describe "associations" do
-    it { should have_many(:variants) }
-    it { should have_many(:genre_categorizations) }
+    it { should have_many(:variants).dependent(:destroy) }
+    it { should have_many(:genre_categorizations).dependent(:destroy) }
     it { should have_many(:genres).through(:genre_categorizations) }
-    it { should have_many(:user_books) }
+    it { should have_many(:user_books).dependent(:destroy) }
     it { should have_many(:users).through(:user_books) }
-    it { should have_many(:contributions) }
+    it { should have_many(:contributions).dependent(:destroy) }
     it { should have_many(:contributors).through(:contributions) }
   end
 
@@ -28,7 +28,11 @@ RSpec.describe Book, type: :model do
       end
       let(:matching_genre) { create(:genre, name: "Fiction") }
       let!(:matching_genre_categorization) do
-        create(:genre_categorization, book: matching_book, genre: matching_genre)
+        create(
+          :genre_categorization,
+          book: matching_book,
+          genre: matching_genre,
+        )
       end
       let(:matching_contributor) { create(:contributor) }
       let!(:matching_contribution) do
@@ -41,7 +45,11 @@ RSpec.describe Book, type: :model do
       let(:non_matching_book) { create(:book, title: "Cat") }
       let(:non_matching_genre) { create(:genre, name: "Horror") }
       let!(:non_matching_genre_categorization) do
-        create(:genre_categorization, book: matching_book, genre: non_matching_genre)
+        create(
+          :genre_categorization,
+          book: matching_book,
+          genre: non_matching_genre,
+        )
       end
       let(:non_matching_contributor) do
         create(:contributor, first_name: "John", last_name: "Smith")
@@ -127,7 +135,7 @@ RSpec.describe Book, type: :model do
 
     let!(:non_ratings) do
       create_list(:user, 3).map do |user|
-          create(:user_book, rating: nil, book: book, user: user)
+        create(:user_book, rating: nil, book: book, user: user)
       end
     end
 
