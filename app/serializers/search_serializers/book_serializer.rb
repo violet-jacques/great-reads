@@ -21,11 +21,14 @@ module SearchSerializers
     private
 
     attr_reader :book
-    delegate :average_rating,
+    delegate(
+      :average_rating,
       :contributors,
       :rating_count,
       :title,
-      :variants, to: :book
+      :variants,
+      to: :book
+    )
 
     def serialized_contributors
       contributors.map do |contributor|

@@ -5,11 +5,23 @@ class Contributor < ApplicationRecord
   validates :birth_place, presence: true
   validates :description, presence: true
 
-  has_many :contributions
+  has_many :contributions, dependent: :destroy
 
-  has_many :influencer_influences, foreign_key: :influencee_id, class_name: "Influence"
+  has_many(
+    :influencer_influences,
+    foreign_key: :influencee_id,
+    class_name: "Influence",
+    inverse_of: :influencee_influences,
+    dependent: :destroy,
+  )
   has_many :influences, through: :influencer_influences, source: :influencer
 
-  has_many :influencee_influences, foreign_key: :influencer_id, class_name: "Influence"
+  has_many(
+    :influencee_influences,
+    foreign_key: :influencer_id,
+    class_name: "Influence",
+    inverse_of: :influencer_influences,
+    dependent: :destroy,
+  )
   has_many :influencees, through: :influencee_influences, source: :influencee
 end

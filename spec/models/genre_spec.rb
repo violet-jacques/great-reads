@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Genre, type: :model do
   describe "validations" do
@@ -9,7 +9,7 @@ RSpec.describe Genre, type: :model do
   end
 
   describe "associations" do
-    it { should have_many(:genre_categorizations) }
+    it { should have_many(:genre_categorizations).dependent(:destroy) }
     it { should have_many(:books).through(:genre_categorizations) }
   end
 end
