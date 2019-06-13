@@ -13,6 +13,6 @@ class Variant < ApplicationRecord
 
   belongs_to :book
 
-  has_many :contributions, as: :contributable
+  has_many :contributions, as: :contributable, dependent: :destroy
   has_many :contributors, through: :contributions
 end

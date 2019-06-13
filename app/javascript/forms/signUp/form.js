@@ -1,8 +1,6 @@
 import React from "react";
 import { Field } from "redux-form/immutable";
 
-import SignInForm from "../signIn/form";
-
 export default ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <div>

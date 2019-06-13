@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   describe "validations" do
@@ -7,14 +7,14 @@ RSpec.describe User, type: :model do
   end
 
   describe "associations" do
-    it { should have_many(:user_books) }
+    it { should have_many(:user_books).dependent(:destroy) }
     it { should have_many(:books).through(:user_books) }
   end
 
-  describe '#to_h' do
+  describe "#to_h" do
     let(:user) { create(:user) }
 
-    it 'should be a hash of the id, email, and role' do
+    it "should be a hash of the id, email, and role" do
       expect(user.to_h).to eq(
         id: user.id,
         email: user.email,

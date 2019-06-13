@@ -1,6 +1,5 @@
 require "rails_helper"
 
-
 module Api
   module Users
     RSpec.describe RegistrationsController, :type => :request do
