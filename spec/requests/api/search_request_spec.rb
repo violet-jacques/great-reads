@@ -6,9 +6,7 @@ module Api
       let(:query) { nil }
       let(:params) do
         {
-          search: {
-            query: query,
-          }
+          q: query,
         }
       end
       let(:matching_book) do
