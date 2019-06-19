@@ -7,3 +7,4 @@ export const SET_ACTIVE_NAV_ITEM = "SET_ACTIVE_NAV_ITEM";
 export const SHOW_MODAL = "SHOW_MODAL";
 export const HIDE_MODAL = "HIDE_MODAL";
 export const SET_MODAL_TYPE = "SET_MODAL_TYPE";
+export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
