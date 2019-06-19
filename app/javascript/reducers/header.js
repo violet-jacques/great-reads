@@ -2,7 +2,6 @@ import { Map } from "immutable";
 
 import { SET_ACTIVE_NAV_ITEM, TOGGLE_HEADER_DROPDOWN } from "../actionTypes";
 
-
 const initialState = Map({
   activeNavItem: "",
   dropdowns: Map({

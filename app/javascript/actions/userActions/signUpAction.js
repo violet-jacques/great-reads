@@ -1,5 +1,3 @@
-import { fromJS } from "immutable";
-
 import userApi from "../../api/userApi";
 import genericAction from "../genericAction";
 import modalActions from "../modalActions";
