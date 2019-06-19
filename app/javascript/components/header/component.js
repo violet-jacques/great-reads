@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Account from "./account";
 import Browse from "./browse";
 import Community from "./community";
+import Search from "./search";
 
 export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
   const activeDetermination = navItem => {
@@ -37,12 +38,10 @@ export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
       <Community
         activeDetermination={activeDetermination}
       />
-      <li
-        className={activeDetermination("search")}
-        onClick={setActiveNavItem("search")}
-      >
-        <Link className="header--nav-item-link" to="/search">Search</Link>
-      </li>
+      <Search
+        activeDetermination={activeDetermination}
+        onClick={setActiveNavItem}
+      />
       <li
         className={activeDetermination("notifications")}
         onClick={setActiveNavItem("notifications")}
