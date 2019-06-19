@@ -13,11 +13,11 @@ module Api
     end
 
     def books
-      Book.book_search(search_params[:query])
+      Book.book_search(search_params)
     end
 
     def search_params
-      params.require(:search).permit(:query)
+      params[:q]
     end
   end
 end
