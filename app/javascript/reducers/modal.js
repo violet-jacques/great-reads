@@ -2,7 +2,6 @@ import { Map } from "immutable";
 
 import { SHOW_MODAL, HIDE_MODAL, SET_MODAL_TYPE } from "../actionTypes";
 
-
 const initialState = Map({
   open: false,
   type: "",
