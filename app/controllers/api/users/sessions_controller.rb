@@ -7,7 +7,10 @@ module Api
 
       def create
         if current_user
-          render json: { success: true, user: current_user.to_h }
+          render json: {
+            success: true,
+            user: UserSerializer.serialize(current_user),
+          }
         elsif !user
           render json: { error: EMAIL_ERROR }
         elsif !valid_password?
@@ -15,7 +18,7 @@ module Api
         else
           sign_in(user)
 
-          render json: { success: true, user: user.to_h }
+          render json: { success: true, user: UserSerializer.serialize(user) }
         end
       end
 
