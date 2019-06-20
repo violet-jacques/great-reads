@@ -1,5 +1,6 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
+import { Map } from "immutable";
 
 import mapDispatchToProps from "../../../components/signIn/mapDispatchToProps";
 
@@ -24,11 +25,11 @@ describe("mapDispatchToProps", () => {
 
     it("dispatches the correct actions", () => {
       const expectedAction = {
-        payload: {
+        payload: Map({
           email: "hey",
           id: 1,
           role: "sup",
-        },
+        }),
         type: "LOGIN_SUCCESS",
       };
 
