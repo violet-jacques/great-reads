@@ -1,5 +1,6 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
+import { List, Map } from "immutable";
 
 import mapDispatchToProps from "../../../../components/header/search/mapDispatchToProps";
 
@@ -13,7 +14,7 @@ describe("mapDispatchToProps", () => {
     const ownProps = { history: { push: jest.fn() } };
     const props = mapDispatchToProps(store.dispatch, ownProps);
     const { onSubmit } = props;
-    const form = { search: "yo dog" };
+    const form = Map({ query: "yo dog", scope: "all" });
 
     beforeEach(() => {
       global.fetch.resetMocks();
@@ -25,7 +26,11 @@ describe("mapDispatchToProps", () => {
 
     it("dispatches the correct actions", () => {
       const expectedAction = {
-        payload: [{ id: 1, name: "dog" }],
+        payload: Map({
+          books: List([Map({ id: 1, name: "dog" }) ]),
+          query: "yo dog",
+          scope: "all",
+        }),
         type: "SEARCH_SUCCESS",
       };
       onSubmit(form)
