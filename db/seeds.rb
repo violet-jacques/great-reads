@@ -3,12 +3,13 @@ require "ffaker"
 
 if Rails.env.development?
   GenreCategorization.destroy_all
-  AuthorBook.destroy_all
+  Contribution.destroy_all
   Influence.destroy_all
   Variant.destroy_all
   Book.destroy_all
   Genre.destroy_all
-  Author.destroy_all
+  Contributor.destroy_all
+  User.destroy_all
 
   [
     "Absurdist", "Tragedy", "Science Fiction", "Fantasy",
@@ -21,45 +22,51 @@ if Rails.env.development?
     )
   end
 
-  authors = FactoryBot.create_list(
-    :author,
-    100,
-    first_name: FFaker::Name.first_name,
-    last_name: FFaker::Name.last_name,
-    born_at: FFaker::Time.between(100.years.ago, 18.years.ago),
-    birth_place: FFaker::Address.city,
-    description: FFaker::Lorem.paragraph,
-  )
-
-  books = FactoryBot.create_list(
-    :book,
-    600,
-    title: FFaker::Book.title,
-    description: FFaker::Book.description,
-    variants: FactoryBot.create_list(
-      :variant,
-      rand(1..4),
-      format: [:paperback, :hardcover].sample,
-      pages: rand(150...600),
-      published_at: FFaker::Time.datetime,
-      published_by: FFaker::Company.name,
-      language: FFaker::Locale.language,
-    ),
-  )
-
-  authors.each do |author|
+  contributors = Array.new(100) do
     FactoryBot.create(
-      :author_book,
-      book: books.sample,
-      author: author,
+      :contributor,
+      first_name: FFaker::Name.unique.first_name,
+      last_name: FFaker::Name.unique.last_name,
+      born_at: FFaker::Time.between(100.years.ago, 18.years.ago),
+      birth_place: FFaker::Address.unique.city,
+      description: FFaker::Lorem.paragraph,
+    )
+  end
+
+  books = Array.new(600) do
+    FactoryBot.create(
+      :book,
+      title: FFaker::Book.unique.title,
+      description: FFaker::Book.description,
+    ).tap do |book|
+      book.variants = Array.new(rand(1..4)) do
+        FactoryBot.create(
+          :variant,
+          format: [:paperback, :hardcover].sample,
+          pages: rand(150...600),
+          published_at: FFaker::Time.datetime,
+          published_by: FFaker::Company.unique.name,
+          language: FFaker::Locale.language,
+          book: book,
+        )
+      end
+    end
+  end
+
+  contributors.each do |contributor|
+    FactoryBot.create(
+      :contribution,
+      contributable: books.sample,
+      contributor: contributor,
     )
   end
 
   books.each do |book|
     FactoryBot.create(
-      :author_book,
-      book: book,
-      author: authors.sample,
+      :contribution,
+      contributable: book,
+      contributor: contributors.sample,
+      contribution_type: Contribution.contribution_types.keys.sample,
     )
   end
 
@@ -80,9 +87,33 @@ if Rails.env.development?
   end
 
   30.times do
-    Influence.create(
-      influencee_id: authors.sample,
-      influencer_id: authors.sample,
+    FactoryBot.create(
+      :influence,
+      influencee: contributors.sample,
+      influencer: contributors.sample,
+    )
+  end
+
+  users = Array.new(100) do
+    FactoryBot.create(
+      :user,
+      first_name: FFaker::Name.first_name,
+      last_name: FFaker::Name.last_name,
+      email: FFaker::Internet.unique.email,
+      password: FFaker::Internet.unique.password,
+    )
+  end
+
+  10_000.times do
+    rating = rand * (5 - 1) + 1
+
+    FactoryBot.create(
+      :user_book,
+      rating: rating,
+      favorite: rating > 3,
+      group: :read,
+      user: users.sample,
+      book: books.sample,
     )
   end
 end
