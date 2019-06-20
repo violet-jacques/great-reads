@@ -1,10 +1,16 @@
 import { fromJS } from "immutable";
 
+const path = form => {
+  const baseUrl = `/api/searches?q=${form.query}`;
+
+  return form.scope ? `${baseUrl}&scope=${form.scope}` : baseUrl;
+}
+
 export default {
   search: form => {
     return (
       global.fetch(
-        `/api/searches?q=${form.search}`,
+        path(form),
         {
           method: "get",
           headers: {
