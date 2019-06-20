@@ -4,6 +4,8 @@ import { SEARCH_SUCCESS } from "../actionTypes";
 
 const initialState = Map({
   books: List(),
+  query: "",
+  scope: "all",
 });
 
 export default (
@@ -12,7 +14,10 @@ export default (
 ) => {
   switch (type) {
     case SEARCH_SUCCESS:
-      return state.set("books", payload);
+      return state
+        .set("books", payload.get("books"))
+        .set("query", payload.get("query"))
+        .set("scope", payload.get("scope") || "all" )
     default:
       return state;
   }
