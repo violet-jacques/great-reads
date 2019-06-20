@@ -7,6 +7,8 @@ describe("searchReducer", () => {
     it("initializes correctly", () => {
       const expectedState = Map({
         books: List(),
+        query: "",
+        scope: "all",
       });
 
       expect(searchReducer(undefined, {}).equals(expectedState)).toBe(true);
@@ -14,20 +16,55 @@ describe("searchReducer", () => {
   });
 
   describe("SEARCH_SUCCESS", () => {
-    it("updates the stae with book information", () => {
-      const currentState = Map({
-        books: List(),
-      });
+    describe("with scope", () => {
+      it("updates the stae with book information", () => {
+        const currentState = Map({
+          books: List(),
+          query: "",
+          scope: "all",
+        });
 
-      const action = {
-        type: "SEARCH_SUCCESS",
-        payload: List([Map({id: "3", title: "hey"})]),
-      };
-      const expectedState = Map({
-        books: List([Map({id: "3", title: "hey"})]),
-      });
+        const books = List([Map({id: "3", title: "hey"})]);
+        const query = "hey";
+        const scope = "title";
 
-      expect(searchReducer(currentState, action).equals(expectedState)).toBe(true);
+        const action = {
+          type: "SEARCH_SUCCESS",
+          payload: Map({ books, query, scope }),
+        };
+        const expectedState = Map({
+          books: List([Map({id: "3", title: "hey"})]),
+          query: "hey",
+          scope: "title",
+        });
+
+        expect(searchReducer(currentState, action).equals(expectedState)).toBe(true);
+      });
+    });
+
+    describe("without scope", () => {
+      it("updates the stae with book information", () => {
+        const currentState = Map({
+          books: List(),
+          query: "",
+          scope: "all",
+        });
+
+        const books = List([Map({id: "3", title: "hey"})]);
+        const query = "hey";
+
+        const action = {
+          type: "SEARCH_SUCCESS",
+          payload: Map({ books, query }),
+        };
+        const expectedState = Map({
+          books: List([Map({id: "3", title: "hey"})]),
+          query: "hey",
+          scope: "all",
+        });
+
+        expect(searchReducer(currentState, action).equals(expectedState)).toBe(true);
+      });
     });
   });
 });
