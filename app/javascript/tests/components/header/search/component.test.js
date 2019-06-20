@@ -2,7 +2,7 @@ import { Map } from "immutable";
 import React from "react";
 import testHelpers from "../../../helpers";
 import Search from "../../../../components/header/search";
-import SearchForm from "../../../../forms/search";
+import SearchForm from "../../../../forms/headerSearch";
 
 describe("Search", () => {
   let wrapper;
@@ -13,6 +13,9 @@ describe("Search", () => {
     const state = Map({
       header: Map({
         activeNavItem: "search",
+      }),
+      search: Map({
+        query: "hey",
       }),
     });
 

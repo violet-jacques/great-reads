@@ -1,5 +1,5 @@
 import React from "react";
-import SearchForm from "../../../forms/search";
+import SearchForm from "../../../forms/headerSearch";
 
 export default ({
   activeDetermination,
