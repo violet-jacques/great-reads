@@ -19,10 +19,14 @@ describe("searchActions", () => {
     });
 
     it("updates the books state", () => {
-      const form = { search: "hey" };
+      const form = { query: "hey", scope: "all" };
       const expectedAction = {
         type: "SEARCH_SUCCESS",
-        payload: List([Map({ id: "3", title: "hey" })]),
+        payload: Map({
+          books: List([Map({ id: "3", title: "hey" })]),
+          query: "hey",
+          scope: "all",
+        }),
       };
 
       return store.dispatch(searchActions.search(form))
