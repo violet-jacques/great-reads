@@ -1,4 +1,6 @@
 import React from "react";
+import { List, Map } from "immutable";
+
 import testHelpers from "../helpers";
 import Search from "../../pages/search";
 
@@ -11,7 +13,13 @@ describe("Search", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = testHelpers.mount(<Search />);
+    const state = Map({
+      search: Map({
+        query: "hey",
+      }),
+    });
+
+    wrapper = testHelpers.mount(<Search />, state);
   });
 
   it("renders", () => {
