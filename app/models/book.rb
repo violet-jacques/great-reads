@@ -23,6 +23,28 @@ class Book < ApplicationRecord
     using: { tsearch: { prefix: true } }
   )
 
+  pg_search_scope(
+    :title_search,
+    against: %i[title],
+    using: { tsearch: { prefix: true } }
+  )
+
+  pg_search_scope(
+    :author_search,
+    associated_against: {
+      contributors: %i[first_name last_name],
+    },
+    using: { tsearch: { prefix: true } }
+  )
+
+  pg_search_scope(
+    :genre_search,
+    associated_against: {
+      genres: %i[name]
+    },
+    using: { tsearch: { prefix: true } }
+  )
+
   def average_rating
     ratings.average(:rating).to_f
   end
