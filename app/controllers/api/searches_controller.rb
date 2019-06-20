@@ -13,11 +13,10 @@ module Api
     end
 
     def books
-      Book.general_search(search_params)
-    end
-
-    def search_params
-      params[:q]
+      BookSearchGenerator.generate(
+        query: params[:q],
+        scope: params[:scope],
+      )
     end
   end
 end
