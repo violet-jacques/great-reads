@@ -1,5 +1,5 @@
 import { combineReducers } from "redux-immutable";
-import { reducer as formReducer } from "redux-form";
+import { reducer as formReducer } from "redux-form/immutable";
 
 import search from "./search";
 import header from "./header";
