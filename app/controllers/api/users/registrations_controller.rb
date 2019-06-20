@@ -13,7 +13,7 @@ module Api
         elsif user.save
           sign_in(user)
 
-          render json: { success: true, user: user.to_h }
+          render json: { success: true, user: UserSerializer.serialize(user) }
         else
           render json: { error: error_messages }
         end
