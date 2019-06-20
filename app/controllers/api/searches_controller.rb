@@ -13,7 +13,7 @@ module Api
     end
 
     def books
-      Book.book_search(search_params)
+      Book.general_search(search_params)
     end
 
     def search_params

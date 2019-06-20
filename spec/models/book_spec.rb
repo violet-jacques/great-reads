@@ -17,7 +17,7 @@ RSpec.describe Book, type: :model do
   end
 
   describe "scopes" do
-    describe ".book_search" do
+    describe ".general_search" do
       let(:search_term) { nil }
       let(:matching_book) do
         create(
@@ -66,7 +66,7 @@ RSpec.describe Book, type: :model do
         let(:search_term) { "Dog" }
 
         it "returns all books with title dog" do
-          expect(Book.book_search(search_term))
+          expect(Book.general_search(search_term))
             .to contain_exactly(matching_book)
         end
       end
@@ -75,7 +75,7 @@ RSpec.describe Book, type: :model do
         let(:search_term) { "Jane" }
 
         it "returns all books with contributor named Jane" do
-          expect(Book.book_search(search_term))
+          expect(Book.general_search(search_term))
             .to contain_exactly(matching_book)
         end
       end
@@ -84,7 +84,7 @@ RSpec.describe Book, type: :model do
         let(:search_term) { "Contributor" }
 
         it "returns all books with contributor named Contributor" do
-          expect(Book.book_search(search_term))
+          expect(Book.general_search(search_term))
             .to contain_exactly(matching_book)
         end
       end
@@ -93,7 +93,7 @@ RSpec.describe Book, type: :model do
         let(:search_term) { "Fiction" }
 
         it "returns all books with the specified genre" do
-          expect(Book.book_search(search_term))
+          expect(Book.general_search(search_term))
             .to contain_exactly(matching_book)
         end
       end
