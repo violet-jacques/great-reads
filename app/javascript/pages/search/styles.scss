@@ -1,0 +1,17 @@
+.searchPage {
+  &--container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-left: 354px;
+  }
+
+  &--column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--component {
+    padding-right: 50px;
+  }
+}
