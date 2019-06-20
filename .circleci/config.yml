@@ -42,7 +42,7 @@ jobs:
           command: bundle exec rspec
       - run:
           name: Jest
-          command: yarn test
+          command: yarn test --maxWorkers=2
 
       - run:
           name: Node coverage
