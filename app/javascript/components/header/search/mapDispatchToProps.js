@@ -6,7 +6,7 @@ export default (dispatch, ownProps) => {
   return {
     onSubmit: query => {
       ownProps.history.push("/search");
-      return dispatch(search(query));
+      return dispatch(search(query.toJS()));
     },
   };
 };
