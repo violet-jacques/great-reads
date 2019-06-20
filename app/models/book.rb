@@ -14,7 +14,7 @@ class Book < ApplicationRecord
   has_many :users, through: :user_books
 
   pg_search_scope(
-    :book_search,
+    :general_search,
     against: %i[title],
     associated_against: {
       contributors: %i[first_name last_name],
