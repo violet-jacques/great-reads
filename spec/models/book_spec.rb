@@ -98,6 +98,93 @@ RSpec.describe Book, type: :model do
         end
       end
     end
+
+    describe ".title_search" do
+      let(:search_term) { "Sup Dog" }
+      let(:matching_book) do
+        create(
+          :book,
+          title: "Sup Dog",
+          variants: create_list(:variant, 2),
+        )
+      end
+      let(:non_matching_book) { create(:book, title: "Cat") }
+
+      it "returns all books with title Sup Dog" do
+        expect(Book.title_search(search_term))
+          .to contain_exactly(matching_book)
+      end
+    end
+
+    describe ".author_search" do
+      let(:search_term) { "John Wick" }
+      let(:matching_book) do
+        create(
+          :book,
+          title: "Sup Dog",
+          variants: create_list(:variant, 2),
+        )
+      end
+      let(:matching_contributor) do
+        create(:contributor, first_name: "John", last_name: "Wick")
+      end
+      let!(:matching_contribution) do
+        create(
+          :contribution,
+          contributable: matching_book,
+          contributor: matching_contributor,
+        )
+      end
+      let(:non_matching_book) { create(:book, title: "Cat") }
+      let(:non_matching_contributor) do
+        create(:contributor, first_name: "Dom", last_name: "Kick")
+      end
+      let!(:non_matching_contribution) do
+        create(
+          :contribution,
+          contributable: non_matching_book,
+          contributor: non_matching_contributor,
+        )
+      end
+
+      it "returns all books with title dog" do
+        expect(Book.author_search(search_term))
+          .to contain_exactly(matching_book)
+      end
+    end
+
+    describe ".genre_search" do
+      let(:search_term) { "Ancom Utopia" }
+      let(:matching_book) do
+        create(
+          :book,
+          title: "Sup Dog",
+          variants: create_list(:variant, 2),
+        )
+      end
+      let(:matching_genre) { create(:genre, name: search_term) }
+      let!(:matching_genre_categorization) do
+        create(
+          :genre_categorization,
+          book: matching_book,
+          genre: matching_genre,
+        )
+      end
+      let(:non_matching_book) { create(:book, title: "Cat") }
+      let(:non_matching_genre) { create(:genre, name: "Horror") }
+      let!(:non_matching_genre_categorization) do
+        create(
+          :genre_categorization,
+          book: matching_book,
+          genre: non_matching_genre,
+        )
+      end
+
+      it "returns all books with title dog" do
+        expect(Book.genre_search(search_term))
+          .to contain_exactly(matching_book)
+      end
+    end
   end
 
   describe "#average_rating" do
