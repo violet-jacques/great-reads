@@ -19,6 +19,7 @@ RSpec.describe Contribution do
         foreward: 3,
         narrator: 4,
         introducer: 5,
+        preface: 6,
       )
     end
   end
