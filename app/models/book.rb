@@ -44,18 +44,4 @@ class Book < ApplicationRecord
     },
     using: { tsearch: { prefix: true } }
   )
-
-  def average_rating
-    ratings.average(:rating).to_f
-  end
-
-  def rating_count
-    ratings.count
-  end
-
-  private
-
-  def ratings
-    @ratings ||= user_books.where.not(rating: nil)
-  end
 end
