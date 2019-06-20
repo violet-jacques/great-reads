@@ -8,7 +8,7 @@ module Api
 
     def serialized_books
       books.map do |book|
-        SearchSerializers::BookSerializer.serialize(book)
+        BookSerializer.serialize(book)
       end
     end
 
