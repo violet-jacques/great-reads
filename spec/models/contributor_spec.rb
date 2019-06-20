@@ -19,7 +19,7 @@ RSpec.describe Contributor, type: :model do
       ).class_name(
         "Influence",
       ).inverse_of(
-        :influencer_influences,
+        :influencee,
       ).dependent(:destroy)
     end
     it do
@@ -30,7 +30,7 @@ RSpec.describe Contributor, type: :model do
       ).class_name(
         "Influence",
       ).inverse_of(
-        :influencee_influences,
+        :influencer,
       ).dependent(:destroy)
     end
     it do

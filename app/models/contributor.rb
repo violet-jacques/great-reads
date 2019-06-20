@@ -11,7 +11,7 @@ class Contributor < ApplicationRecord
     :influencer_influences,
     foreign_key: :influencee_id,
     class_name: "Influence",
-    inverse_of: :influencee_influences,
+    inverse_of: :influencer,
     dependent: :destroy,
   )
   has_many :influences, through: :influencer_influences, source: :influencer
@@ -20,7 +20,7 @@ class Contributor < ApplicationRecord
     :influencee_influences,
     foreign_key: :influencer_id,
     class_name: "Influence",
-    inverse_of: :influencer_influences,
+    inverse_of: :influencee,
     dependent: :destroy,
   )
   has_many :influencees, through: :influencee_influences, source: :influencee
