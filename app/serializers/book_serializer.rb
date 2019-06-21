@@ -14,6 +14,7 @@ class BookSerializer
       variant_count: book.variants.count,
       average_rating: average_rating,
       rating_count: ratings.count,
+      genres: genres,
     }
   end
 
@@ -36,5 +37,9 @@ class BookSerializer
 
   def ratings
     @ratings ||= book.user_books.where.not(rating: nil)
+  end
+
+  def genres
+    book.genres.map { |genre| { id: genre.id, name: genre.name } }
   end
 end

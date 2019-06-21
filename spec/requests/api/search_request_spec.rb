@@ -82,6 +82,16 @@ module Api
                 "variant_count" => 2,
                 "average_rating" => 3.5,
                 "rating_count" => 10,
+                "genres" => [
+                  {
+                    "id" => matching_genre.id,
+                    "name" => matching_genre.name,
+                  },
+                  {
+                    "id" => non_matching_genre.id,
+                    "name" => non_matching_genre.name,
+                  },
+                ],
               },
             ],
           )
@@ -107,6 +117,16 @@ module Api
                 "variant_count" => 2,
                 "average_rating" => 3.5,
                 "rating_count" => 10,
+                "genres" => [
+                  {
+                    "id" => matching_genre.id,
+                    "name" => matching_genre.name,
+                  },
+                  {
+                    "id" => non_matching_genre.id,
+                    "name" => non_matching_genre.name,
+                  },
+                ],
               },
             ],
           )
@@ -132,6 +152,16 @@ module Api
                 "variant_count" => 2,
                 "average_rating" => 3.5,
                 "rating_count" => 10,
+                "genres" => [
+                  {
+                    "id" => matching_genre.id,
+                    "name" => matching_genre.name,
+                  },
+                  {
+                    "id" => non_matching_genre.id,
+                    "name" => non_matching_genre.name,
+                  },
+                ],
               },
             ],
           )
@@ -157,6 +187,16 @@ module Api
                 "variant_count" => 2,
                 "average_rating" => 3.5,
                 "rating_count" => 10,
+                "genres" => [
+                  {
+                    "id" => matching_genre.id,
+                    "name" => matching_genre.name,
+                  },
+                  {
+                    "id" => non_matching_genre.id,
+                    "name" => non_matching_genre.name,
+                  },
+                ],
               },
             ],
           )
