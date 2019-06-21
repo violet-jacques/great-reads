@@ -6,7 +6,7 @@ import Browse from "./browse";
 import Community from "./community";
 import Search from "./search";
 
-export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
+export default ({ activeNavItem, setActiveNavItem }) => {
   const activeDetermination = navItem => {
     if (navItem === activeNavItem) {
       return "header--nav-item-active";
@@ -22,13 +22,13 @@ export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
       </li>
       <li
         className={activeDetermination("home")}
-        onClick={setActiveNavItem("home")}
+        onClick={setActiveNavItem("home", "/")}
       >
-        <Link className="header--nav-item-link" to="/">Home</Link>
+        <a className="header--nav-item-link">Home</a>
       </li>
       <li
         className={activeDetermination("my-books")}
-        onClick={setActiveNavItem("my-books")}
+        onClick={setActiveNavItem("my-books", "/my-books")}
       >
         <Link className="header--nav-item-link" to="/my-books">My Books</Link>
       </li>
@@ -50,6 +50,7 @@ export default ({ activeNavItem, isLoggedIn, setActiveNavItem }) => {
       </li>
       <Account
         activeDetermination={activeDetermination}
+        onClick={setActiveNavItem("account", "/account")}
       />
     </ul>
   );
