@@ -186,4 +186,17 @@ RSpec.describe Book, type: :model do
       end
     end
   end
+
+  describe ".search" do
+    let(:query) { "query" }
+    let(:scope) { "scope" }
+
+    before { allow(BookSearchGenerator).to receive(:generate) }
+
+    it "passes the search params to the book search generator" do
+      Book.search(query: query, scope: scope)
+
+      expect(BookSearchGenerator).to have_received(:generate)
+    end
+  end
 end

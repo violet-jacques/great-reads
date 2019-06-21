@@ -5,7 +5,7 @@ RSpec.describe BookSearchGenerator do
     let(:scope) { nil }
     let(:query) { "hey" }
     subject(:book_search) do
-      described_class.generate(query: query, scope: scope)
+      described_class.generate(query, scope)
     end
 
     before do
