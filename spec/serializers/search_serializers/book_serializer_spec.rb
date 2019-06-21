@@ -25,6 +25,10 @@ RSpec.describe BookSerializer do
         create(:user_book, rating: 5, book: book, user: user)
       end
     end
+    let(:genre) { FactoryBot.create(:genre, name: "sup") }
+    let!(:genre_categorization) do
+      FactoryBot.create(:genre_categorization, genre: genre, book: book)
+    end
 
     subject(:serialized_book) { BookSerializer.serialize(book) }
 
@@ -37,6 +41,10 @@ RSpec.describe BookSerializer do
         variant_count: 2,
         average_rating: 3.5,
         rating_count: 10,
+        genres: [{
+          id: genre.id,
+          name: genre.name,
+        }],
       )
     end
   end
