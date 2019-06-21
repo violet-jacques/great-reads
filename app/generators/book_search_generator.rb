@@ -1,7 +1,7 @@
 class BookSearchGenerator
   DEFAULT_SCOPE = "all".freeze
 
-  def self.generate(query:, scope:)
+  def self.generate(query, scope)
     new(query, scope).generate
   end
 

@@ -44,4 +44,8 @@ class Book < ApplicationRecord
     },
     using: { tsearch: { prefix: true } }
   )
+
+  def self.search(query:, scope:)
+    BookSearchGenerator.generate(query, scope)
+  end
 end
