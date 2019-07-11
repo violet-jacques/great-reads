@@ -4,7 +4,9 @@
     "roots": [
       "app/javascript"
     ],
-    "setupFilesAfterEnv": ["<rootDir>app/javascript/tests/.setup"],
+    "setupFilesAfterEnv": [
+      "<rootDir>app/javascript/tests/.setup"
+    ],
     "unmockedModulePathPatterns": [
       "react",
       "enzyme",
