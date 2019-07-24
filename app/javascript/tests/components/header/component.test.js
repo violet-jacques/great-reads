@@ -12,7 +12,6 @@ describe("Header", () => {
       isLoggedIn: false,
     }),
     header: Map({
-      activeNavItem: "",
       dropdowns: Map({
         browse: false,
         community: false,
@@ -26,18 +25,6 @@ describe("Header", () => {
 
   it("renders", () => {
     expect(wrapper.find(Header)).toHaveLength(1);
-  });
-
-  describe("activeNavItem", () => {
-    const newState = state.setIn(["header", "activeNavItem"], "home");
-
-    beforeEach(() => {
-      wrapper = testHelpers.mountWithRouter(<Header />, newState);
-    });
-
-    it("renders a link to the account page", () => {
-      expect(wrapper.find("li").at(1).hasClass("header--nav-item-active")).toEqual(true);
-    });
   });
 
   describe("dropdown", () => {

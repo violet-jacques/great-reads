@@ -10,7 +10,7 @@ const store = mockStore();
 describe("mapDispatchToProps", () => {
   const props = mapDispatchToProps(store.dispatch);
 
-  describe("setActiveNavItem", () => {
+  describe("hideModal", () => {
     const { hideModal } = props;
 
     it("returns the expected action", () => {

@@ -13,7 +13,6 @@ describe("Layout", () => {
       isLoggedIn: false,
     }),
     header: Map({
-      activeNavItem: "",
       dropdowns: Map({
         browse: false,
         community: false,
