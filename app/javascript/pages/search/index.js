@@ -1,3 +1,6 @@
-import Search from "./component";
+import { connect } from "react-redux";
 
-export default Search;
+import Search from "./component";
+import mapStateToProps from "./mapStateToProps";
+
+export default connect(mapStateToProps)(Search);

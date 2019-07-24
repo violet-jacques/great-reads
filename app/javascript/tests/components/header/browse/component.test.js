@@ -7,13 +7,11 @@ import testHelpers from "../../../helpers";
 
 describe("Browse", () => {
   let wrapper;
-  const { setActiveNavItem, toggleHeaderDropdown } = headerActions;
   const state = Map({
     user: Map({
       isLoggedIn: false,
     }),
     header: Map({
-      activeNavItem: "",
       dropdowns: Map({
         browse: false,
         community: false,
@@ -51,11 +49,7 @@ describe("Browse", () => {
       describe("when dropdown is closed", () => {
         it("sets active nav item to browse and opens the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "browse",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "browse",
@@ -63,8 +57,7 @@ describe("Browse", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
 
@@ -77,13 +70,9 @@ describe("Browse", () => {
           wrapper = testHelpers.mount(<Browse {...props} />, newState);
         });
 
-        it("sets activeNavItem and closes the dropdown", () => {
+        it("sets closes the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "browse",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "browse",
@@ -91,16 +80,14 @@ describe("Browse", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
     });
 
-    describe("when activeNavItem is browse", () => {
+    describe("when click on browse", () => {
       let wrapper;
       const newState = state.setIn(["user", "isLoggedIn"], false)
-        .setIn(["header", "activeNavItem"], "browse");
 
       beforeEach(() => {
         wrapper = testHelpers.mount(<Browse {...props} />, newState);
@@ -108,11 +95,7 @@ describe("Browse", () => {
       describe("when dropdown is closed", () => {
         it("opens the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "browse",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "browse",
@@ -120,15 +103,13 @@ describe("Browse", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).not.toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
 
       describe("when dropdown is open", () => {
         let wrapper;
         const newState = state.setIn(["user", "isLoggedIn"], false)
-          .setIn(["header", "activeNavItem"], "browse")
           .setIn(["header", "dropdowns", "browse"], true);
 
 
@@ -136,13 +117,9 @@ describe("Browse", () => {
           wrapper = testHelpers.mount(<Browse {...props} />, newState);
         });
 
-        it("sets activeNavItem and closes the dropdown", () => {
+        it("closes the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "browse",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "browse",
@@ -150,8 +127,7 @@ describe("Browse", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).not.toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
     });
