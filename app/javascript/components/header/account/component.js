@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default ({
-  activeDetermination,
+  className,
   isLoggedIn,
-  setActiveNavItem,
   signIn,
 }) => {
   const renderAccountTab = () => {
@@ -16,17 +15,15 @@ export default ({
   };
 
   const accountOnClick = () => {
-    if (isLoggedIn) {
-      return setActiveNavItem("account");
-    } else {
-      return signIn;
+    if (!isLoggedIn) {
+      return signIn();
     }
   };
 
   return (
     <li
-      className={activeDetermination("account")}
-      onClick={accountOnClick()}
+      className={className}
+      onClick={accountOnClick}
     >
       {renderAccountTab()}
     </li>

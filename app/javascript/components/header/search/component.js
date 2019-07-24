@@ -2,13 +2,12 @@ import React from "react";
 import SearchForm from "../../../forms/headerSearch";
 
 export default ({
-  activeDetermination,
-  onClick,
+  className,
   onSubmit,
 }) => {
 
   return (
-    <li className={activeDetermination("search")} onClick={onClick("search")}>
+    <li className={className}>
       <div className="search--link">
         <SearchForm
           onSubmit={onSubmit}

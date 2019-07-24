@@ -11,9 +11,7 @@ describe("Search", () => {
 
   beforeEach(() => {
     const state = Map({
-      header: Map({
-        activeNavItem: "search",
-      }),
+      header: Map({}),
       search: Map({
         query: "hey",
       }),

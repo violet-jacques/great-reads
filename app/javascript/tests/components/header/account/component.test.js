@@ -12,7 +12,6 @@ describe("Account", () => {
       isLoggedIn: false,
     }),
     header: Map({
-      activeNavItem: "",
       dropdowns: Map({
         browse: false,
         community: false,
@@ -35,12 +34,16 @@ describe("Account", () => {
   describe("account link", () => {
     describe("when the user is logged in", () => {
       const newState = state.setIn(["user", "isLoggedIn"], true);
+      const history = { history: { push: jest.fn() }};
+      const newProps = { ...props, history };
 
       beforeEach(() => {
-        wrapper = testHelpers.mountWithRouter(<Account {...props} />, newState);
+        wrapper = testHelpers.mountWithRouter(<Account {...newProps} />, newState);
       });
 
-      it("renders a link to the account page", () => {
+      it("navigates to account when clicked", () => {
+        wrapper.find("li").last().prop("onClick")();
+
         expect(wrapper.find(Link).last().props().to).toEqual("/account");
       });
     });
