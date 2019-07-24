@@ -5,7 +5,6 @@ import mapStateToProps from "../../../../components/header/community/mapStateToP
 describe("mapStateToProps", () => {
   const state = Map({
     header: Map({
-      activeNavItem: "hey",
       dropdowns: Map({
         browse: false,
         community: true,
@@ -13,10 +12,6 @@ describe("mapStateToProps", () => {
     }),
   });
   const props = mapStateToProps(state);
-
-  it("returns the activeNavItem", () => {
-    expect(props.activeNavItem).toEqual("hey");
-  });
 
   it("returns the browse dropdown as dropdownOpen", () => {
     expect(props.dropdownOpen).toEqual(true);

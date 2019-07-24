@@ -2,18 +2,15 @@ import { Map } from "immutable";
 import React from "react";
 
 import Community from "../../../../components/header/community";
-import headerActions from "../../../../actions/headerActions";
 import testHelpers from "../../../helpers";
 
 describe("Community", () => {
   let wrapper;
-  const { setActiveNavItem, toggleHeaderDropdown } = headerActions;
   const state = Map({
     user: Map({
       isLoggedIn: false,
     }),
     header: Map({
-      activeNavItem: "",
       dropdowns: Map({
         browse: false,
         community: false,
@@ -50,11 +47,7 @@ describe("Community", () => {
       describe("when dropdown is closed", () => {
         it("sets active nav item to community and opens the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "community",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "community",
@@ -62,8 +55,7 @@ describe("Community", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
 
@@ -75,13 +67,9 @@ describe("Community", () => {
           wrapper = testHelpers.mount(<Community {...props} />, newState);
         });
 
-        it("sets activeNavItem and closes the dropdown", () => {
+        it("closes the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "community",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "community",
@@ -89,28 +77,21 @@ describe("Community", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
     });
 
-    describe("when activeNavItem is community", () => {
+    describe("when click on community", () => {
       let wrapper;
-      const newState = state.setIn(["header", "activeNavItem"], "community");
-
 
       beforeEach(() => {
-        wrapper = testHelpers.mount(<Community {...props} />, newState);
+        wrapper = testHelpers.mount(<Community {...props} />, state);
       });
       describe("when dropdown is closed", () => {
         it("opens the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "community",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "community",
@@ -118,27 +99,21 @@ describe("Community", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).not.toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
 
       describe("when dropdown is open", () => {
         let wrapper;
-        const newState = state.setIn(["header", "activeNavItem"], "community")
-          .setIn(["header", "dropdowns", "community"], true);
+        const newState = state.setIn(["header", "dropdowns", "community"], true);
 
         beforeEach(() => {
           wrapper = testHelpers.mount(<Community {...props} />, newState);
         });
 
-        it("sets activeNavItem and closes the dropdown", () => {
+        it("closes the dropdown", () => {
           wrapper.find("li").prop("onClick")();
-          const firstExpectedAction = {
-            type: "SET_ACTIVE_NAV_ITEM",
-            payload: "community",
-          };
-          const secondExpectedAction = {
+          const expectedAction = {
             type: "TOGGLE_HEADER_DROPDOWN",
             payload: Map({
               navItem: "community",
@@ -146,8 +121,7 @@ describe("Community", () => {
             }),
           };
 
-          expect(wrapper.props().store.getActions()).not.toContainEqual(firstExpectedAction);
-          expect(wrapper.props().store.getActions()).toContainEqual(secondExpectedAction);
+          expect(wrapper.props().store.getActions()).toContainEqual(expectedAction);
         });
       });
     });

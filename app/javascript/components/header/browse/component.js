@@ -2,11 +2,9 @@ import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 
 export default ({
-  activeDetermination,
-  activeNavItem,
+  className,
   dropdownOpen,
   hideDropdown,
-  setActiveNavItem,
   showDropdown,
 }) => {
   const renderDropdown = () => {
@@ -21,9 +19,6 @@ export default ({
   };
 
   const handleClick = () => {
-    if (activeNavItem !== "browse") {
-      setActiveNavItem();
-    }
     if (dropdownOpen) {
       return hideDropdown();
     }
@@ -33,7 +28,7 @@ export default ({
 
   return (
     <OutsideClickHandler onOutsideClick={hideDropdown}>
-      <li className={activeDetermination("browse")} onClick={handleClick}>
+      <li className={className} onClick={handleClick}>
         <div className="header--with-dropdown">
           <div className="header--dropdown-title">
             Browse
