@@ -2,7 +2,7 @@ import React from "react";
 import OutsideClickHandler from "react-outside-click-handler";
 
 export default ({
-  activeDetermination,
+  className,
   activeNavItem,
   dropdownOpen,
   hideDropdown,
@@ -33,7 +33,7 @@ export default ({
 
   return (
     <OutsideClickHandler onOutsideClick={hideDropdown}>
-      <li className={activeDetermination("community")} onClick={handleClick}>
+      <li className={className} onClick={handleClick}>
         <div className="header--with-dropdown">
           <div className="header--dropdown-title">
             Community

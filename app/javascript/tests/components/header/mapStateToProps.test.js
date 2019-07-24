@@ -11,11 +11,21 @@ describe("mapStateToProps", () => {
       isLoggedIn: true,
     }),
   });
+  const ownProps = {
+    history: {
+      location: {
+        pathname: "/yo",
+      },
+    },
+  };
 
-  const props = mapStateToProps(state);
+  const props = mapStateToProps(state, ownProps);
 
-  it("contains the login error message", () => {
-    expect(props.isLoggedIn).toEqual(true);
+  it("contains the active name item", () => {
+    expect(props.activeNavItem).toEqual("Hey");
+  });
+
+  it("contains the pathname", () => {
     expect(props.activeNavItem).toEqual("Hey");
   });
 });

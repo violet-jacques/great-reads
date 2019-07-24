@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default ({
-  activeDetermination,
+  className,
   isLoggedIn,
   setActiveNavItem,
   signIn,
@@ -25,7 +25,7 @@ export default ({
 
   return (
     <li
-      className={activeDetermination("account")}
+      className={className}
       onClick={accountOnClick()}
     >
       {renderAccountTab()}

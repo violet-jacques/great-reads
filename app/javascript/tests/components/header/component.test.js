@@ -36,7 +36,7 @@ describe("Header", () => {
     });
 
     it("renders a link to the account page", () => {
-      expect(wrapper.find("li").at(1).hasClass("header--nav-item-active")).toEqual(true);
+      expect(wrapper.find("li").at(1).hasClass("header--nav-item")).toEqual(true);
     });
   });
 
