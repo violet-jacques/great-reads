@@ -7,25 +7,11 @@ import SearchBar from "../../components/search/searchBar";
 
 
 export default ({ books }) => {
-  const thereAreBooks = () => {
-    return books.count() > 0;
-  };
-
-  const renderBooks = () => {
-    if (thereAreBooks()) {
+  const renderSearchPageComponent = Component => {
+    if (books.count() > 0) {
       return(
         <li className="searchPage--component">
-          <Books />
-        </li>
-      );
-    }
-  };
-
-  const renderRelatedShelves = () => {
-    if (thereAreBooks()) {
-      return(
-        <li className="searchPage--component">
-          <RelatedShelves />
+          <Component />
         </li>
       );
     }
@@ -38,13 +24,13 @@ export default ({ books }) => {
       <li className="searchPage--component">
         <SearchBar />
       </li>
-      {renderBooks()}
+      {renderSearchPageComponent(Books)}
     </ul>
     <ul className="searchPage--column">
       <li className="searchPage--component">
         <AddBook />
       </li>
-      {renderRelatedShelves()}
+      {renderSearchPageComponent(RelatedShelves)}
     </ul>
   </ul>
   );
