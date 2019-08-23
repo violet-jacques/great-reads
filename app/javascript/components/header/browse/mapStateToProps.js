@@ -1,5 +1,3 @@
-export default state => {
-  return {
-    dropdownOpen: state.getIn(["header", "dropdowns", "browse"]),
-  };
-};
+import headerDropdownOpen from "../../../states/headerDropdownOpen"
+
+export default headerDropdownOpen("browse");
