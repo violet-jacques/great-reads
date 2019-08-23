@@ -1,5 +1,3 @@
-export default state => {
-  return {
-    loginErrorMessage: state.getIn(["user", "errors", "loginErrorMessage"]),
-  };
-};
+import userErrorMessage from "../../states/userErrorMessage";
+
+export default userErrorMessage("loginErrorMessage");
