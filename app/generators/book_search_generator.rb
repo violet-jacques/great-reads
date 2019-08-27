@@ -1,5 +1,8 @@
 class BookSearchGenerator
+  AUTHOR = "author".freeze
   DEFAULT_SCOPE = "all".freeze
+  GENRE = "genre".freeze
+  TITLE = "title".freeze
 
   def self.generate(query, scope)
     new(query, scope).generate
@@ -11,15 +14,19 @@ class BookSearchGenerator
   end
 
   def generate
-    case @scope
-    when "title"
-      Book.title_search(@query)
-    when "genre"
-      Book.genre_search(@query)
-    when "author"
-      Book.author_search(@query)
+    case scope
+    when AUTHOR
+      Book.author_search(query)
+    when GENRE
+      Book.genre_search(query)
+    when TITLE
+      Book.title_search(query)
     when DEFAULT_SCOPE
-      Book.general_search(@query)
+      Book.general_search(query)
     end
   end
+
+  private
+
+  attr_reader :query, :scope
 end
