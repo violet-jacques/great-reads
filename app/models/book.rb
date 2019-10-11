@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
 
   validates :title, presence: true
   validates :description, presence: true
